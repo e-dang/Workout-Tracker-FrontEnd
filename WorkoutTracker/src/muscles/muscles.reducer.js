@@ -1,7 +1,8 @@
-import {GET_MUSCLES} from './muscles.type';
+import {GET_MUSCLES, SELECT_MUSCLES, CLEAR_SELECTED_MUSCLES} from './muscles.type';
 
 const initialState = {
     muscles: [],
+    selectedMuscles: [],
     hasInitialMuscles: false,
     isPendingGetMuscles: false,
     error: null,
@@ -26,6 +27,16 @@ export const musclesReducer = (state = initialState, action = {}) => {
                 ...state,
                 isPendingGetMuscles: false,
                 error: action.payload,
+            };
+        case SELECT_MUSCLES:
+            return {
+                ...state,
+                selectedMuscles: action.payload,
+            };
+        case CLEAR_SELECTED_MUSCLES:
+            return {
+                ...state,
+                selectedMuscles: [],
             };
         default:
             return state;
