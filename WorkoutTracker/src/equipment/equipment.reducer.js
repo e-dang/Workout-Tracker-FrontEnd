@@ -1,7 +1,8 @@
-import {GET_EQUIPMENT} from './equipment.type';
+import {GET_EQUIPMENT, SELECT_EQUIPMENT, CLEAR_SELECTED_EQUIPMENT} from './equipment.type';
 
 const initialState = {
     equipment: [],
+    selectedEquipment: [],
     hasInitialEquipment: false,
     isPendingGetEquipment: false,
     error: null,
@@ -27,6 +28,16 @@ export const equipmentReducer = (state = initialState, action = {}) => {
                 ...state,
                 isPendingGetEquipment: false,
                 error: action.payload,
+            };
+        case SELECT_EQUIPMENT:
+            return {
+                ...state,
+                selectedEquipment: action.payload,
+            };
+        case CLEAR_SELECTED_EQUIPMENT:
+            return {
+                ...state,
+                selectedEquipment: [],
             };
         default:
             return state;
