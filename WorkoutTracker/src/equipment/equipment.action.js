@@ -6,7 +6,7 @@ export const getEquipment = () => async (dispatch, getState) => {
 
     dispatch({type: GET_EQUIPMENT.PENDING});
     return api
-        .getEquipment(authState.user.pk, authState.authToken)
+        .getEquipment(authState.user.id, authState.authToken)
         .then((resp) => {
             dispatch({type: GET_EQUIPMENT.SUCCESS, payload: resp.data.results});
         })

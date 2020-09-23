@@ -7,7 +7,7 @@ export const getMovements = () => async (dispatch, getState) => {
 
     dispatch({type: GET_MOVEMENTS.PENDING});
     return api
-        .getMovements(authState.user.pk, authState.authToken)
+        .getMovements(authState.user.id, authState.authToken)
         .then((resp) => {
             dispatch({type: GET_MOVEMENTS.SUCCESS, payload: resp.data.results});
         })
