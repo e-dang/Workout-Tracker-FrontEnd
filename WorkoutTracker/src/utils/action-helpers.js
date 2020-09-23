@@ -4,3 +4,11 @@ export const createActionSet = (actionName) => ({
     ERROR: `${actionName}_ERROR`,
     actionName,
 });
+
+export function extractRelatedObjLink(relatedData) {
+    if (Array.isArray(relatedData)) {
+        return relatedData.map((obj) => obj.url);
+    }
+
+    return relatedData.url;
+}
