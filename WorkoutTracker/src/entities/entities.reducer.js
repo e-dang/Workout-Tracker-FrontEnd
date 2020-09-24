@@ -3,6 +3,7 @@ import {merge} from 'lodash';
 const initialState = {
     muscles: {},
     equipment: {},
+    movements: {},
 };
 
 export const entityReducer = (state = initialState, action) => {
