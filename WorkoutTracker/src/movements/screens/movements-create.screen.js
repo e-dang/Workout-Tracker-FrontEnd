@@ -11,11 +11,11 @@ export default function MovementCreateScreen(props) {
 
     return (
         <SafeAreaView style={{flex: 1}}>
+            <Appbar.Header>
+                <Appbar.BackAction onPress={() => navigation.pop()} />
+                <Appbar.Content title="Create Movement" />
+            </Appbar.Header>
             <ScrollView>
-                <Appbar.Header>
-                    <Appbar.BackAction onPress={() => navigation.pop()} />
-                    <Appbar.Content title="Create Movement" />
-                </Appbar.Header>
                 <TextInput mode="outlined" label="Name" value={name} onChangeText={(text) => setName(text)} />
                 <HelperText type="error" visible={false}>
                     <Text>Error.</Text>
