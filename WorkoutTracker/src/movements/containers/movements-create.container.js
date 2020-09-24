@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import MovementCreateScreen from '../screens/movements-create.screen';
 import {createMovement, getMovements} from '../movements.action';
 import {getEquipment} from '../../equipment/equipment.action';
-import {getMuscles} from '../../muscles';
 
 export default function MovementCreateContainer({navigation}) {
     const dispatch = useDispatch();
@@ -14,9 +13,6 @@ export default function MovementCreateContainer({navigation}) {
     React.useEffect(() => {
         if (!equipmentState.hasInitialEquipment && !equipmentState.isPendingGetEquipment) {
             dispatch(getEquipment());
-        }
-        if (!muscleState.hasInitialMuscles && !muscleState.isPendingGetMuscles) {
-            dispatch(getMuscles());
         }
     });
 
