@@ -4,7 +4,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {FlatList} from 'react-native';
 
 export default function MovementListScreen(props) {
-    const {movements, navigation} = props;
+    const {movements, navigation, refreshing, onRefresh, onEndReached} = props;
 
     return (
         <SafeAreaView>
@@ -18,6 +18,9 @@ export default function MovementListScreen(props) {
                 keyExtractor={(item) => `${item.id}`}
                 ItemSeparatorComponent={Divider}
                 data={movements}
+                refreshing={refreshing}
+                onRefresh={onRefresh}
+                onEndReached={onEndReached}
             />
         </SafeAreaView>
     );
