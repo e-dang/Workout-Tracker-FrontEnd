@@ -5,18 +5,7 @@ import SubmitButton from './submit-button.component';
 import MultiSelectList from './multi-select-list.component';
 
 function MultiSelectScreen(props) {
-    const {
-        title,
-        onBackPress,
-        data,
-        preSelected,
-        keyExtractor,
-        enableSearch,
-        placeholder,
-        filterFieldExtractor,
-        queryModifier,
-        onSubmit,
-    } = props;
+    const {title, onBackPress, data, preSelected, keyExtractor, onRefresh, refreshing, onEndReached, onSubmit} = props;
 
     const [selectedItems, setSelectedItems] = useState(preSelected);
 
@@ -42,10 +31,9 @@ function MultiSelectScreen(props) {
                 onSelect={selectItem}
                 onUnselect={unselectItem}
                 keyExtractor={keyExtractor}
-                enableSearch={enableSearch}
-                placeholder={placeholder}
-                filterFieldExtractor={filterFieldExtractor}
-                queryModifier={queryModifier}
+                onRefresh={onRefresh}
+                refreshing={refreshing}
+                onEndReached={onEndReached}
             />
             <SubmitButton onPress={() => onSubmit(selectedItems)} />
         </SafeAreaView>
