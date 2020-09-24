@@ -18,9 +18,8 @@ export const movementReducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 isPendingCreateMovement: false,
-                movements: [...state.movements, action.payload],
             };
-        case CREATE_MOVEMENT.FAILURE:
+        case CREATE_MOVEMENT.ERROR:
             return {
                 ...state,
                 isPendingCreateMovement: false,
@@ -38,7 +37,7 @@ export const movementReducer = (state = initialState, action = {}) => {
                 isPendingDeleteMovement: false,
                 movements: state.movements.filter((movement) => movement != action.payload),
             };
-        case DELETE_MOVEMENT.FAILURE:
+        case DELETE_MOVEMENT.ERROR:
             return {
                 ...state,
                 isPendingDeleteMovement: false,
