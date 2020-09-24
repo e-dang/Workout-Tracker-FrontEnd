@@ -1,27 +1,16 @@
-import {GET_MOVEMENTS, CREATE_MOVEMENT} from './movements.type';
+import {CREATE_MOVEMENT} from './movements.type';
+import {GET_MOVEMENTS} from '../pagination/pagination.action';
 import {api} from '../api';
 import {extractRelatedObjLink} from '../utils/action-helpers';
-
-export const getMovements = () => async (dispatch, getState) => {
-    const authState = getState().auth;
-
-    dispatch({type: GET_MOVEMENTS.PENDING});
-    return api
-        .getMovements(authState.user.id, authState.authToken)
-        .then((resp) => {
-            dispatch({type: GET_MOVEMENTS.SUCCESS, payload: resp.data.results});
-        })
-        .catch((err) => {
-            dispatch({type: GET_MOVEMENTS.FAILURE, payload: err.response.status});
-        });
-};
+import client from '../api/client';
+import {movementListSchema} from '../api/schemas';
 
 export const createMovement = (name, equipment, muscles) => async (dispatch, getState) => {
     const authState = getState().auth;
 
     dispatch({type: CREATE_MOVEMENT.PENDING});
     return api
-        .createMovement(authState.user.pk, authState.authToken, {
+        .createMovement(authState.user.id, authState.authToken, {
             name,
             equipment: extractRelatedObjLink(equipment),
             muscles: extractRelatedObjLink(muscles),
@@ -33,4 +22,13 @@ export const createMovement = (name, equipment, muscles) => async (dispatch, get
             dispatch({type: CREATE_MOVEMENT.FAILURE, payload: err.response.status});
             throw err;
         });
+};
+
+export const movementActions = {
+    listMovements: (userID, paginationParams = {}) => {
+        return client.list(`users/${userID}/movements/`, movementListSchema, GET_MOVEMENTS, {
+            ...paginationParams,
+            paginationKey: userID.toString(),
+        });
+    },
 };

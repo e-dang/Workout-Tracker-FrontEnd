@@ -1,9 +1,6 @@
-import {GET_MOVEMENTS, CREATE_MOVEMENT, DELETE_MOVEMENT} from './movements.type';
+import {CREATE_MOVEMENT, DELETE_MOVEMENT} from './movements.type';
 
 const initialState = {
-    movements: [],
-    hasInitialMovements: false,
-    isPendingGetMovements: false,
     isPendingCreateMovement: false,
     isPendingDeleteMovement: false,
     error: null,
@@ -11,25 +8,6 @@ const initialState = {
 
 export const movementReducer = (state = initialState, action = {}) => {
     switch (action.type) {
-        case GET_MOVEMENTS.PENDING:
-            return {
-                ...state,
-                isPendingGetMovements: true,
-                error: null,
-            };
-        case GET_MOVEMENTS.SUCCESS:
-            return {
-                ...state,
-                isPendingGetMovements: false,
-                hasInitialMovements: true,
-                movements: action.payload,
-            };
-        case GET_MOVEMENTS.FAILURE:
-            return {
-                ...state,
-                isPendingGetMovements: false,
-                error: action.payload,
-            };
         case CREATE_MOVEMENT.PENDING:
             return {
                 ...state,
