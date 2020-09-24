@@ -72,7 +72,7 @@ export default client = {
         return axiosClient
             .get(url, constructHeader(authToken))
             .then((resp) => {
-                normalizedJson = normalize(getData(resp), schema);
+                let normalizedJson = normalize(getData(resp), schema);
 
                 normalizedJson.pagination = {
                     ids: normalizedJson.result,
@@ -95,6 +95,29 @@ export default client = {
                     id: paginationKey,
                 });
 
+                return Promise.reject(err);
+            });
+    },
+    create: (url, data, schema, action) => async (dispatch, useState) => {
+        dispatch({
+            type: action.PENDING,
+        });
+
+        const authToken = useState().auth.authToken;
+        return axiosClient
+            .post(url, data, constructHeader(authToken))
+            .then((resp) => {
+                let normalizedJson = normalize(getData(resp), schema);
+                delete normalizedJson.result;
+
+                dispatch({
+                    type: action.SUCCESS,
+                    payload: normalizedJson,
+                });
+                return Promise.resolve();
+            })
+            .catch((err) => {
+                dispatch({type: action.ERROR});
                 return Promise.reject(err);
             });
     },
