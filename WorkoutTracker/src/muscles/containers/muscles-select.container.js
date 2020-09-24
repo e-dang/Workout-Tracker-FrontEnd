@@ -41,7 +41,7 @@ export default function MusclesSelectContainer({navigation}) {
             selectedMuscles={muscleState.selectedMuscles}
             handleSelectMuscles={handleSelectMuscles}
             onRefresh={refresh}
-            refreshing={!muscles && paginationState.muscles.isFetching}
+            refreshing={!muscles && paginationState.GET_MUSCLES.isFetching}
             onEndReached={() => dispatch(muscleActions.listMuscles({loadMore: true}))}
         />
     );
