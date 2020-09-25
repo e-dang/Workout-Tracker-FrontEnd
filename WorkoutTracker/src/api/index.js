@@ -26,8 +26,20 @@ export const api = {
     getAuthUser: async (authToken) => {
         return await api.get('auth/user/', authToken);
     },
+    getMovements: async (pk, authToken) => {
+        return await api.get(`users/${pk}/movements/`, authToken);
+    },
+    getMuscles: async (authToken) => {
+        return await api.get('muscles/', authToken);
+    },
+    getEquipment: async (pk, authToken) => {
+        return await api.get(`users/${pk}/equipment/`, authToken);
+    },
     post: async (url, authToken, body = {}) => {
-        return await api.instance.post(url, JSON.stringify(body), api.headers(authToken, ACCEPT.JSON));
+        return await api.instance.post(url, body, api.headers(authToken, ACCEPT.JSON));
+    },
+    createMovement: async (pk, authToken, body) => {
+        return await api.post(`users/${pk}/movements/`, authToken, body);
     },
     put: async (url, authToken, body = {}) => {
         return await api.instance.put(url, body, api.headers(authToken, ACCEPT.JSON));
