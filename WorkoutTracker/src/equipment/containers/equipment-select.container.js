@@ -1,17 +1,17 @@
 import React from 'react';
 import EquipmentSelectScreen from '../screens/equipment-select.screen';
 import {useSelector, useDispatch} from 'react-redux';
-import {addSelectedEquipment, equipmentActions} from '../equipment.action';
+import equipmentActions from '../equipment.action';
 
 const getEquipment = (paginationKey) => {
     const paginationState = useSelector((state) => state.pagination);
     const entityState = useSelector((state) => state.entities);
+    let ids = [];
 
     try {
         ids = paginationState.GET_EQUIPMENT[paginationKey].ids;
-    } catch (TypeError) {
-        ids = [];
-    }
+    } catch (TypeError) {}
+
     return ids.map((id) => entityState.equipment[id]);
 };
 
@@ -29,7 +29,7 @@ export default function EquipmentSelectContainer({navigation}) {
     });
 
     const handleSelectEquipment = (equipment) => {
-        dispatch(addSelectedEquipment(equipment)).then(() => {
+        dispatch(equipmentActions.addSelectedEquipment(equipment)).then(() => {
             navigation.pop();
         });
     };
