@@ -1,28 +1,15 @@
 import React from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {EquipmentSelectScreen} from '@equipment/screens';
 import {equipmentActions} from '@equipment';
-
-const getEquipment = (paginationKey) => {
-    const paginationState = useSelector((state) => state.pagination);
-    const entityState = useSelector((state) => state.entities);
-    let ids = [];
-
-    try {
-        ids = paginationState.GET_EQUIPMENT[paginationKey].ids;
-    } catch (TypeError) {}
-
-    return ids.map((id) => entityState.equipment[id]);
-};
+import {getEquipment, getEquipmentState, getPaginationState, getAuthUserID} from '@utils';
 
 export function EquipmentSelectContainer({navigation}) {
     const dispatch = useDispatch();
-    const equipmentState = useSelector((state) => state.equipment);
-    const authState = useSelector((state) => state.auth);
-    const paginationState = useSelector((state) => state.pagination);
-    const equipment = getEquipment(authState.user.id.toString());
+    const userID = getAuthUserID();
+    const equipment = getEquipment(userID);
 
-    const refresh = () => dispatch(equipmentActions.listEquipment(authState.user.id));
+    const refresh = () => dispatch(equipmentActions.listEquipment(userID));
 
     React.useEffect(() => {
         refresh();
@@ -38,11 +25,11 @@ export function EquipmentSelectContainer({navigation}) {
         <EquipmentSelectScreen
             navigation={navigation}
             equipment={equipment}
-            selectedEquipment={equipmentState.selectedEquipment}
+            selectedEquipment={getEquipmentState().selectedEquipment}
             handleSelectEquipment={handleSelectEquipment}
             onRefresh={refresh}
-            refreshing={!equipment && paginationState.GET_EQUIPMENT.isFetching}
-            onEndReached={() => dispatch(equipmentActions.listEquipment(authState.user.id, {loadmore: true}))}
+            refreshing={!equipment && getPaginationState('GET_EQUIPMENT').isFetching}
+            onEndReached={() => dispatch(equipmentActions.listEquipment(userID, {loadmore: true}))}
         />
     );
 }

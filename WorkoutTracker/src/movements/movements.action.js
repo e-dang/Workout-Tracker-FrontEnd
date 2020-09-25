@@ -1,8 +1,7 @@
 import {CREATE_MOVEMENT} from '@movements/movements.type';
 import {GET_MOVEMENTS} from '@pagination';
 import {extractRelatedObjLink} from '@utils';
-import {client} from '@api';
-import {movementListSchema, movementSchema} from '@api/schemas';
+import {client, movementListSchema, movementSchema} from '@api';
 
 export const movementActions = {
     listMovements: (userID, paginationParams = {}) => {
