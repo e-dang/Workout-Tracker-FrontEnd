@@ -9,7 +9,7 @@ function SelectedChipSet(props) {
     return (
         <View style={styles.chipContainer}>
             {data.map((item, idx) => (
-                <SelectedChip key={idx} title={item} onClose={onClose} />
+                <SelectedChip key={idx} title={item} onClose={() => onClose(item)} />
             ))}
         </View>
     );
