@@ -1,5 +1,6 @@
 import {LOGIN, LOGOUT, GET_AUTH_USER, REGISTER} from '@auth/auth.type';
 import {client} from '@api';
+import {getAuthToken} from '@utils';
 
 function extractAuthKey(response) {
     return response.data.key;
@@ -19,13 +20,9 @@ export const login = (username, password) => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch, getState) => {
-    const authToken = getState().auth.authToken;
-
-    if (authToken == null) return Promise.resolve();
-
     dispatch({type: LOGOUT.PENDING});
     return client
-        .logout(authToken)
+        .logout(getAuthToken(getState))
         .then((resp) => {
             dispatch({type: LOGOUT.SUCCESS});
         })
@@ -36,13 +33,9 @@ export const logout = () => async (dispatch, getState) => {
 };
 
 export const getAuthUser = () => async (dispatch, getState) => {
-    const authToken = getState().auth.authToken;
-
-    if (authToken == null) return Promise.resolve();
-
     dispatch({type: GET_AUTH_USER.PENDING});
     return client
-        .getAuthUser(authToken)
+        .getAuthUser(getAuthToken(getState))
         .then((resp) => {
             dispatch({type: GET_AUTH_USER.SUCCESS, payload: resp.data});
         })

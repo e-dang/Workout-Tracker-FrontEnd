@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {normalize} from 'normalizr';
+import {getAuthToken, getPaginationState} from '@utils';
 
 const ROOT_URL = 'http://localhost:8000/api/v1/';
 
@@ -47,7 +48,7 @@ export const client = {
             });
         }
 
-        const pagination = getState().pagination[action.actionName];
+        const pagination = getPaginationState(action.actionName, getState);
         const {pageCount = 0, isFetching = false, nextPageURL} = pagination[paginationKey] || {};
 
         // should we block the call?
@@ -67,7 +68,7 @@ export const client = {
         });
 
         // perform call
-        const authToken = getState().auth.authToken;
+        const authToken = getAuthToken(getState);
 
         return axiosClient
             .get(url, constructHeader(authToken))
