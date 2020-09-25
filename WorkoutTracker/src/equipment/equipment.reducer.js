@@ -1,4 +1,4 @@
-import {SELECT_EQUIPMENT, CLEAR_SELECTED_EQUIPMENT} from './equipment.type';
+import {SELECT_EQUIPMENT, CLEAR_SELECTED_EQUIPMENT, REMOVE_SELECTED_EQUIPMENT} from './equipment.type';
 
 const initialState = {
     selectedEquipment: [],
@@ -11,6 +11,11 @@ export const equipmentReducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 selectedEquipment: action.payload,
+            };
+        case REMOVE_SELECTED_EQUIPMENT:
+            return {
+                ...state,
+                selectedEquipment: state.selectedEquipment.filter((item) => item.name != action.payload),
             };
         case CLEAR_SELECTED_EQUIPMENT:
             return {
