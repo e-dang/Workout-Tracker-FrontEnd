@@ -121,4 +121,34 @@ export const client = {
                 return Promise.reject(err);
             });
     },
+    login: async (username, password) => {
+        return await axiosClient.post(
+            'auth/login/',
+            {username, password},
+            {
+                headers: {
+                    Accept: ACCEPT.JSON,
+                    'Content-Type': ACCEPT.JSON,
+                },
+            },
+        );
+    },
+    logout: async (authToken) => {
+        return await axiosClient.post('auth/logout/', authToken);
+    },
+    register: async (username, password, confirmPassword) => {
+        return await axiosClient.post(
+            'auth/register/',
+            {username, password1: password, password2: confirmPassword},
+            {
+                headers: {
+                    Accept: ACCEPT.JSON,
+                    'Content-Type': ACCEPT.JSON,
+                },
+            },
+        );
+    },
+    getAuthUser: async (authToken) => {
+        return await axiosClient.get('auth/user/', constructHeader(authToken));
+    },
 };
