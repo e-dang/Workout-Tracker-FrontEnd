@@ -14,7 +14,7 @@ const rootPersistConfig = {
     whitelist: ['auth'],
 };
 
-const rootReducer = combineReducers({
+const _rootReducer = combineReducers({
     auth: authReducer,
     movements: movementReducer,
     equipment: equipmentReducer,
@@ -23,4 +23,5 @@ const rootReducer = combineReducers({
     entities: entityReducer,
 });
 
-export default persistReducer(rootPersistConfig, rootReducer);
+// export const rootReducer = persistReducer(rootPersistConfig, _rootReducer);
+export default persistReducer(rootPersistConfig, _rootReducer);
