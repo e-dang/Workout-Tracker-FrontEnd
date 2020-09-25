@@ -6,7 +6,14 @@ import SubmitButton from '../../components/submit-button.component';
 import SelectChipsSection from '../../components/select-chips-section.component';
 
 export default function MovementCreateScreen(props) {
-    const {handleCreateMovement, navigation, selectedEquipment, selectedMuscles} = props;
+    const {
+        handleCreateMovement,
+        handleRemoveSelectedEquipment,
+        handleRemoveSelectedMuscles,
+        navigation,
+        selectedEquipment,
+        selectedMuscles,
+    } = props;
     const [name, setName] = useState('');
 
     return (
@@ -23,13 +30,13 @@ export default function MovementCreateScreen(props) {
                 <SelectChipsSection
                     title={'Equipment'}
                     data={selectedEquipment.map((piece) => piece.name)}
-                    onClose={1}
+                    onClose={handleRemoveSelectedEquipment}
                     onAdd={() => navigation.push('EquipmentSelect')}
                 />
                 <SelectChipsSection
                     title={'Muscles'}
                     data={selectedMuscles.map((muscle) => muscle.name)}
-                    onClose={1}
+                    onClose={handleRemoveSelectedMuscles}
                     onAdd={() => navigation.push('MusclesSelect')}
                 />
             </ScrollView>

@@ -19,12 +19,22 @@ export default function MovementCreateContainer({navigation}) {
         });
     };
 
+    const handleRemoveSelectedEquipment = (equipment) => {
+        dispatch(equipmentActions.removeSelectedEquipment(equipment));
+    };
+
+    const handleRemoveSelectedMuscles = (muscle) => {
+        dispatch(muscleActions.removeSelectedMuscle(muscle));
+    };
+
     return (
         <MovementCreateScreen
             navigation={navigation}
             handleCreateMovement={handleCreateMovement}
             selectedEquipment={equipmentState.selectedEquipment}
             selectedMuscles={muscleState.selectedMuscles}
+            handleRemoveSelectedEquipment={handleRemoveSelectedEquipment}
+            handleRemoveSelectedMuscles={handleRemoveSelectedMuscles}
         />
     );
 }
