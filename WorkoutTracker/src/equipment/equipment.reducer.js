@@ -1,4 +1,4 @@
-import {SELECT_EQUIPMENT, CLEAR_SELECTED_EQUIPMENT, REMOVE_SELECTED_EQUIPMENT} from './equipment.type';
+import {SELECT_EQUIPMENT, CLEAR_SELECTED_EQUIPMENT, REMOVE_SELECTED_EQUIPMENT} from '@equipment/equipment.type';
 
 const initialState = {
     selectedEquipment: [],

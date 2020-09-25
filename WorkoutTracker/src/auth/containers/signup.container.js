@@ -1,9 +1,9 @@
 import React from 'react';
-import SignUpScreen from '../screens/signup.screen';
 import {useSelector, useDispatch} from 'react-redux';
-import {register, getAuthUser} from '../auth.action';
+import {SignUpScreen} from '@auth/screens';
+import {register, getAuthUser} from '@auth';
 
-export default function SignUpContainer() {
+export function SignUpContainer() {
     const dispatch = useDispatch();
     const authState = useSelector((state) => state.auth);
 

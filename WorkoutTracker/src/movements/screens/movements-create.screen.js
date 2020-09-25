@@ -2,10 +2,9 @@ import React, {useState} from 'react';
 import {Text, ScrollView} from 'react-native';
 import {TextInput, HelperText, Appbar} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import SubmitButton from '../../components/submit-button.component';
-import SelectChipsSection from '../../components/select-chips-section.component';
+import {SelectChipsSection, SubmitButton} from '@components';
 
-export default function MovementCreateScreen(props) {
+export function MovementCreateScreen(props) {
     const {
         handleCreateMovement,
         handleRemoveSelectedEquipment,

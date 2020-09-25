@@ -1,7 +1,7 @@
 import React from 'react';
-import EquipmentSelectScreen from '../screens/equipment-select.screen';
 import {useSelector, useDispatch} from 'react-redux';
-import equipmentActions from '../equipment.action';
+import {EquipmentSelectScreen} from '@equipment/screens';
+import {equipmentActions} from '@equipment';
 
 const getEquipment = (paginationKey) => {
     const paginationState = useSelector((state) => state.pagination);
@@ -15,7 +15,7 @@ const getEquipment = (paginationKey) => {
     return ids.map((id) => entityState.equipment[id]);
 };
 
-export default function EquipmentSelectContainer({navigation}) {
+export function EquipmentSelectContainer({navigation}) {
     const dispatch = useDispatch();
     const equipmentState = useSelector((state) => state.equipment);
     const authState = useSelector((state) => state.auth);

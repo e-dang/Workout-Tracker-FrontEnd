@@ -34,7 +34,7 @@ const axiosClient = axios.create({
     baseURL: ROOT_URL,
 });
 
-export default client = {
+export const client = {
     list: (url, schema, action, paginationParams = {}) => async (dispatch, getState) => {
         // pagination handling
         const {paginationKey, forceRefresh = false, loadMore = false} = paginationParams;

@@ -1,6 +1,6 @@
 import React from 'react';
-import WelcomeScreen from '../screens/welcome.screen';
+import {WelcomeScreen} from '@auth/screens';
 
-export default function WelcomeContainer({navigation}) {
+export function WelcomeContainer({navigation}) {
     return <WelcomeScreen navigation={navigation} />;
 }

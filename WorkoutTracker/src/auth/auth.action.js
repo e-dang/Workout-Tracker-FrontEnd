@@ -1,5 +1,5 @@
-import {LOGIN, LOGOUT, GET_AUTH_USER, REGISTER} from './auth.type';
-import {api} from '../api';
+import {LOGIN, LOGOUT, GET_AUTH_USER, REGISTER} from '@auth/auth.type';
+import {api} from '@api';
 
 function extractAuthKey(response) {
     return response.data.key;

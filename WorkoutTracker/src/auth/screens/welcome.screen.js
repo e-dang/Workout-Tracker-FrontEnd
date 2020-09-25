@@ -1,9 +1,9 @@
 import React from 'react';
 import {Button} from 'react-native-paper';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-export default function WelcomeScreen({navigation}) {
+export function WelcomeScreen({navigation}) {
     return (
         <SafeAreaView>
             <View>

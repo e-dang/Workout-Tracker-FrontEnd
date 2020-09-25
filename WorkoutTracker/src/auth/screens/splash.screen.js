@@ -2,7 +2,7 @@ import React from 'react';
 import {ActivityIndicator, Colors} from 'react-native-paper';
 import {View, StyleSheet} from 'react-native';
 
-export default function SplashScreen() {
+export function SplashScreen() {
     return (
         <View style={styles.indicator}>
             <ActivityIndicator animating={true} color={Colors.red800} size="large" />

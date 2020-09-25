@@ -3,7 +3,7 @@ import {TextInput, HelperText, Button, ActivityIndicator} from 'react-native-pap
 import {View, StyleSheet, Text} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-export default function SignUpScreen(props) {
+export function SignUpScreen(props) {
     const {handleRegistration, usernameError, passwordError, confirmPasswordError, isRegistering} = props;
 
     const [username, setUsername] = React.useState('');

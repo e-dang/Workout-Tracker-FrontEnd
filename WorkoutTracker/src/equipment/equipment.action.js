@@ -1,9 +1,8 @@
-import {SELECT_EQUIPMENT, REMOVE_SELECTED_EQUIPMENT, CLEAR_SELECTED_EQUIPMENT} from './equipment.type';
-import {GET_EQUIPMENT} from '../pagination/pagination.action';
-import client from '../api/client';
-import {equipmentListSchema} from '../api/schemas/equipment';
+import {SELECT_EQUIPMENT, REMOVE_SELECTED_EQUIPMENT, CLEAR_SELECTED_EQUIPMENT} from '@equipment/equipment.type';
+import {GET_EQUIPMENT} from '@pagination';
+import {client, equipmentListSchema} from '@api';
 
-export default equipmentActions = {
+export const equipmentActions = {
     listEquipment: (userID, paginationParams = {}) => {
         return client.list(`/users/${userID}/equipment/`, equipmentListSchema, GET_EQUIPMENT, {
             ...paginationParams,

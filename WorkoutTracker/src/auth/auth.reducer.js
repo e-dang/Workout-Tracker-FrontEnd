@@ -1,4 +1,4 @@
-import {LOGIN, LOGOUT, GET_AUTH_USER, REGISTER} from './auth.type';
+import {LOGIN, LOGOUT, GET_AUTH_USER, REGISTER} from '@auth/auth.type';
 
 const initialState = {
     isLoggingIn: false,

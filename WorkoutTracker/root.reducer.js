@@ -1,12 +1,12 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import {combineReducers} from 'redux';
 import {persistReducer} from 'redux-persist';
-import {authReducer} from './src/auth';
-import {movementReducer} from './src/movements';
-import {equipmentReducer} from './src/equipment';
-import {musclesReducer} from './src/muscles';
-import {paginationReducer} from './src/pagination';
-import {entityReducer} from './src/entities/entities.reducer';
+import {authReducer} from '@auth';
+import {movementReducer} from '@movements';
+import {equipmentReducer} from '@equipment';
+import {musclesReducer} from '@muscles';
+import {paginationReducer} from '@pagination';
+import {entityReducer} from '@entities';
 
 const rootPersistConfig = {
     key: 'root',

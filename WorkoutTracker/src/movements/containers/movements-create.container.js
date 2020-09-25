@@ -1,11 +1,11 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import MovementCreateScreen from '../screens/movements-create.screen';
-import {movementActions} from '../movements.action';
-import equipmentActions from '../../equipment/equipment.action';
-import muscleActions from '../../muscles/muscles.action';
+import {MovementCreateScreen} from '@movements/screens';
+import {movementActions} from '@movements';
+import {equipmentActions} from '@equipment';
+import {muscleActions} from '@muscles';
 
-export default function MovementCreateContainer({navigation}) {
+export function MovementCreateContainer({navigation}) {
     const dispatch = useDispatch();
     const equipmentState = useSelector((state) => state.equipment);
     const muscleState = useSelector((state) => state.muscles);

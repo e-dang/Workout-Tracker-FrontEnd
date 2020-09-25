@@ -1,3 +1,6 @@
+export * from '@api/client';
+export * from '@api/schemas';
+
 import axios from 'axios';
 
 const ROOT_URL = 'http://localhost:8000/api/v1/';

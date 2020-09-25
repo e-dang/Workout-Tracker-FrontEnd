@@ -1,3 +1,3 @@
-export * from './movements.action';
-export * from './movements.reducer';
-export * from './movements.type';
+export * from '@movements/movements.action';
+export * from '@movements/movements.reducer';
+export * from '@movements/movements.type';

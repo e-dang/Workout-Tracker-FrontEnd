@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import MovementListScreen from '../screens/movements-list.screen';
+import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {movementActions} from '../movements.action';
+import {MovementListScreen} from '@movements/screens'; //'@movements/screens/movements-list.screen';
+import {movementActions} from '@movements';
 
 const getMovements = (paginationKey) => {
     const paginationState = useSelector((state) => state.pagination);
@@ -17,7 +17,7 @@ const getMovements = (paginationKey) => {
     return ids.map((id) => entityState.movements[id]);
 };
 
-export default function MovementListContainer({route, navigation}) {
+export function MovementListContainer({route, navigation}) {
     const dispatch = useDispatch();
     const movementState = useSelector((state) => state.movements);
     const authState = useSelector((state) => state.auth);

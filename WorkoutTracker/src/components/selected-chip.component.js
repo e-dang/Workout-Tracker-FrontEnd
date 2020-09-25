@@ -1,7 +1,7 @@
 import React from 'react';
 import {Chip, withTheme, useTheme} from 'react-native-paper';
 
-function SelectedChip(props) {
+function _SelectedChip(props) {
     const {title, onClose, key} = props;
     const {colors} = useTheme();
 
@@ -12,4 +12,4 @@ function SelectedChip(props) {
     );
 }
 
-export default withTheme(SelectedChip);
+export const SelectedChip = withTheme(_SelectedChip);

@@ -1,8 +1,8 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {FAB, withTheme} from 'react-native-paper';
 
-function SubmitButton({onPress}) {
+function _SubmitButton({onPress}) {
     return <FAB style={styles.fab} label="Submit" onPress={onPress} />;
 }
 
@@ -15,4 +15,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default withTheme(SubmitButton);
+export const SubmitButton = withTheme(_SubmitButton);

@@ -1,3 +1,5 @@
-export * from './muscles.action';
-export * from './muscles.type';
-export * from './muscles.reducer';
+export * from '@muscles/muscles.action';
+export * from '@muscles/muscles.type';
+export * from '@muscles/muscles.reducer';
+// export * from '@muscles/containers';
+// export * from '@muscles/screens';

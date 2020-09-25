@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {store, persistor} from './root.store';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import SplashScreen from './src/auth/screens/splash.screen';
+import {SplashScreen} from '@auth/screens/splash.screen';
 import WorkoutTracker from './routes';
 
 const theme = {

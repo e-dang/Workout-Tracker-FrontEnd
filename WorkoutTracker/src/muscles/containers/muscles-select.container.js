@@ -1,7 +1,7 @@
 import React from 'react';
-import MusclesSelectScreen from '../screens/muscles-select.screen';
 import {useSelector, useDispatch} from 'react-redux';
-import muscleActions from '../muscles.action';
+import {MusclesSelectScreen} from '@muscles/screens';
+import {muscleActions} from '@muscles';
 
 const getMuscles = () => {
     const paginationState = useSelector((state) => state.pagination);
@@ -15,7 +15,7 @@ const getMuscles = () => {
     return ids.map((id) => entityState.muscles[id]);
 };
 
-export default function MusclesSelectContainer({navigation}) {
+export function MusclesSelectContainer({navigation}) {
     const dispatch = useDispatch();
     const muscleState = useSelector((state) => state.muscles);
     const paginationState = useSelector((state) => state.pagination);

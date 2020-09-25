@@ -3,7 +3,7 @@ import {List, Appbar, Divider} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {FlatList} from 'react-native';
 
-export default function MovementListScreen(props) {
+export function MovementListScreen(props) {
     const {movements, navigation, refreshing, onRefresh, onEndReached} = props;
 
     return (

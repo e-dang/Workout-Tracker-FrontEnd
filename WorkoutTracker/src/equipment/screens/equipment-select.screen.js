@@ -1,7 +1,7 @@
 import React from 'react';
-import MultiSelectScreen from '../../components/multi-select-screen.component';
+import {MultiSelectScreen} from '@components';
 
-export default function EquipmentSelectScreen(props) {
+export function EquipmentSelectScreen(props) {
     const {
         navigation,
         equipment,

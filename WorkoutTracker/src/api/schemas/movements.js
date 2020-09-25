@@ -1,7 +1,7 @@
 import {schema} from 'normalizr';
-import {userSchema} from './users';
-import {muscleListSchema} from './muscles';
-import {equipmentListSchema} from './equipment';
+import {userSchema} from '@api/schemas/users';
+import {muscleListSchema} from '@api/schemas/muscles';
+import {equipmentListSchema} from '@api/schemas/equipment';
 
 export const movementSchema = new schema.Entity('movements', {
     owner: userSchema,
