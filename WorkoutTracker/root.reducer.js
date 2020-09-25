@@ -5,6 +5,8 @@ import {authReducer} from './src/auth';
 import {movementReducer} from './src/movements';
 import {equipmentReducer} from './src/equipment';
 import {musclesReducer} from './src/muscles';
+import {paginationReducer} from './src/pagination';
+import {entityReducer} from './src/entities/entities.reducer';
 
 const rootPersistConfig = {
     key: 'root',
@@ -17,6 +19,8 @@ const rootReducer = combineReducers({
     movements: movementReducer,
     equipment: equipmentReducer,
     muscles: musclesReducer,
+    pagination: paginationReducer,
+    entities: entityReducer,
 });
 
 export default persistReducer(rootPersistConfig, rootReducer);

@@ -1,33 +1,30 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import MovementCreateScreen from '../screens/movements-create.screen';
-import {createMovement, getMovements} from '../movements.action';
-import {getEquipment} from '../../equipment/equipment.action';
-import {getMuscles} from '../../muscles';
+import {movementActions} from '../movements.action';
+import equipmentActions from '../../equipment/equipment.action';
+import muscleActions from '../../muscles/muscles.action';
 
 export default function MovementCreateContainer({navigation}) {
     const dispatch = useDispatch();
-    const movementState = useSelector((state) => state.movements);
     const equipmentState = useSelector((state) => state.equipment);
     const muscleState = useSelector((state) => state.muscles);
-
-    React.useEffect(() => {
-        if (!equipmentState.hasInitialEquipment && !equipmentState.isPendingGetEquipment) {
-            dispatch(getEquipment());
-        }
-        if (!muscleState.hasInitialMuscles && !muscleState.isPendingGetMuscles) {
-            dispatch(getMuscles());
-        }
-    });
+    const authState = useSelector((state) => state.auth);
 
     const handleCreateMovement = (name, equipment, muscles) => {
-        dispatch(createMovement(name, equipment, muscles))
-            .then(() =>
-                dispatch(getMovements())
-                    .then(() => navigation.pop())
-                    .catch((err) => {}),
-            )
-            .catch((err) => {});
+        dispatch(movementActions.createMovement(authState.user.id, {name, equipment, muscles})).then(() => {
+            dispatch(equipmentActions.clearSelectedEquipment());
+            dispatch(muscleActions.clearSelectedMuscles());
+            navigation.navigate('MovementList', {forceRefresh: true});
+        });
+    };
+
+    const handleRemoveSelectedEquipment = (equipment) => {
+        dispatch(equipmentActions.removeSelectedEquipment(equipment));
+    };
+
+    const handleRemoveSelectedMuscles = (muscle) => {
+        dispatch(muscleActions.removeSelectedMuscle(muscle));
     };
 
     return (
@@ -36,6 +33,8 @@ export default function MovementCreateContainer({navigation}) {
             handleCreateMovement={handleCreateMovement}
             selectedEquipment={equipmentState.selectedEquipment}
             selectedMuscles={muscleState.selectedMuscles}
+            handleRemoveSelectedEquipment={handleRemoveSelectedEquipment}
+            handleRemoveSelectedMuscles={handleRemoveSelectedMuscles}
         />
     );
 }

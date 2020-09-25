@@ -1,36 +1,22 @@
-import {GET_MOVEMENTS, CREATE_MOVEMENT} from './movements.type';
-import {api} from '../api';
+import {CREATE_MOVEMENT} from './movements.type';
+import {GET_MOVEMENTS} from '../pagination/pagination.action';
 import {extractRelatedObjLink} from '../utils/action-helpers';
+import client from '../api/client';
+import {movementListSchema, movementSchema} from '../api/schemas';
 
-export const getMovements = () => async (dispatch, getState) => {
-    const authState = getState().auth;
-
-    dispatch({type: GET_MOVEMENTS.PENDING});
-    return api
-        .getMovements(authState.user.id, authState.authToken)
-        .then((resp) => {
-            dispatch({type: GET_MOVEMENTS.SUCCESS, payload: resp.data.results});
-        })
-        .catch((err) => {
-            dispatch({type: GET_MOVEMENTS.FAILURE, payload: err.response.status});
+export const movementActions = {
+    listMovements: (userID, paginationParams = {}) => {
+        return client.list(`users/${userID}/movements/`, movementListSchema, GET_MOVEMENTS, {
+            ...paginationParams,
+            paginationKey: userID.toString(),
         });
-};
-
-export const createMovement = (name, equipment, muscles) => async (dispatch, getState) => {
-    const authState = getState().auth;
-
-    dispatch({type: CREATE_MOVEMENT.PENDING});
-    return api
-        .createMovement(authState.user.pk, authState.authToken, {
-            name,
-            equipment: extractRelatedObjLink(equipment),
-            muscles: extractRelatedObjLink(muscles),
-        })
-        .then((resp) => {
-            dispatch({type: CREATE_MOVEMENT.SUCCESS, payload: resp.data});
-        })
-        .catch((err) => {
-            dispatch({type: CREATE_MOVEMENT.FAILURE, payload: err.response.status});
-            throw err;
-        });
+    },
+    createMovement: (userID, {name, equipment, muscles}) => {
+        return client.create(
+            `users/${userID}/movements/`,
+            {name, equipment: extractRelatedObjLink(equipment), muscles: extractRelatedObjLink(muscles)},
+            movementSchema,
+            CREATE_MOVEMENT,
+        );
+    },
 };

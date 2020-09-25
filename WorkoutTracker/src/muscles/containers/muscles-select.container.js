@@ -1,15 +1,34 @@
 import React from 'react';
 import MusclesSelectScreen from '../screens/muscles-select.screen';
-import {useSelector} from 'react-redux';
-import {addSelectedMuscles} from '../muscles.action';
-import {useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import muscleActions from '../muscles.action';
+
+const getMuscles = () => {
+    const paginationState = useSelector((state) => state.pagination);
+    const entityState = useSelector((state) => state.entities);
+    let ids = [];
+
+    try {
+        ids = paginationState.GET_MUSCLES['1'].ids;
+    } catch (TypeError) {}
+
+    return ids.map((id) => entityState.muscles[id]);
+};
 
 export default function MusclesSelectContainer({navigation}) {
     const dispatch = useDispatch();
     const muscleState = useSelector((state) => state.muscles);
+    const paginationState = useSelector((state) => state.pagination);
+    const muscles = getMuscles();
+
+    const refresh = () => dispatch(muscleActions.listMuscles());
+
+    React.useEffect(() => {
+        refresh();
+    });
 
     const handleSelectMuscles = (muscles) => {
-        dispatch(addSelectedMuscles(muscles)).then(() => {
+        dispatch(muscleActions.addSelectedMuscles(muscles)).then(() => {
             navigation.pop();
         });
     };
@@ -17,9 +36,12 @@ export default function MusclesSelectContainer({navigation}) {
     return (
         <MusclesSelectScreen
             navigation={navigation}
-            muscles={muscleState.muscles}
+            muscles={muscles}
             selectedMuscles={muscleState.selectedMuscles}
             handleSelectMuscles={handleSelectMuscles}
+            onRefresh={refresh}
+            refreshing={!muscles && paginationState.GET_MUSCLES.isFetching}
+            onEndReached={() => dispatch(muscleActions.listMuscles({loadMore: true}))}
         />
     );
 }

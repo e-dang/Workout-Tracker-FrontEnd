@@ -1,25 +1,19 @@
-import {GET_MUSCLES, SELECT_MUSCLES, CLEAR_SELECTED_MUSCLES} from './muscles.type';
-import {api} from '../api';
+import {SELECT_MUSCLES, REMOVE_SELECTED_MUSCLE, CLEAR_SELECTED_MUSCLES} from './muscles.type';
+import {GET_MUSCLES} from '../pagination/pagination.action';
+import client from '../api/client';
+import {muscleListSchema} from '../api/schemas/muscles';
 
-export const getMuscles = () => async (dispatch, getState) => {
-    const authToken = getState().auth.authToken;
-
-    dispatch({type: GET_MUSCLES.PENDING});
-    return api
-        .getMuscles(authToken)
-        .then((resp) => {
-            dispatch({type: GET_MUSCLES.SUCCESS, payload: resp.data.results});
-        })
-        .catch((err) => {
-            console.log(err.response.status);
-            dispatch({type: GET_MUSCLES.ERROR, payload: err.response.status});
-        });
-};
-
-export const addSelectedMuscles = (muscles) => async (dispatch) => {
-    return dispatch({type: SELECT_MUSCLES, payload: muscles});
-};
-
-export const clearSelectedMuscles = () => async (dispatch) => {
-    return dispatch({type: CLEAR_SELECTED_MUSCLES});
+export default muscleActions = {
+    listMuscles: (paginationParams = {}) => {
+        return client.list('muscles/', muscleListSchema, GET_MUSCLES, {...paginationParams, paginationKey: '1'});
+    },
+    addSelectedMuscles: (muscles) => async (dispatch) => {
+        return dispatch({type: SELECT_MUSCLES, payload: muscles});
+    },
+    removeSelectedMuscle: (muscle) => async (dispatch) => {
+        return dispatch({type: REMOVE_SELECTED_MUSCLE, payload: muscle});
+    },
+    clearSelectedMuscles: () => async (dispatch) => {
+        return dispatch({type: CLEAR_SELECTED_MUSCLES});
+    },
 };

@@ -1,7 +1,7 @@
 import {schema} from 'normalizr';
 
 export const muscleSchema = new schema.Entity(
-    'muscle',
+    'muscles',
     {},
     {
         idAttribute: (muscle) => muscle.name,
