@@ -5,6 +5,11 @@ export const createActionSet = (actionName) => ({
     actionName,
 });
 
+export const createPaginationActionSet = (actionName) => ({
+    ...createActionSet(actionName),
+    RESET: `${actionName}_RESET`,
+});
+
 export function extractRelatedObjLink(relatedData) {
     if (Array.isArray(relatedData)) {
         return relatedData.map((obj) => obj.url);
