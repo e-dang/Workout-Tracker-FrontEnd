@@ -8,9 +8,10 @@ import {getMuscleState, getEquipmentState, getAuthUserID} from '@utils';
 
 export function MovementCreateContainer({navigation}) {
     const dispatch = useDispatch();
+    const userID = getAuthUserID();
 
     const handleCreateMovement = (name, equipment, muscles) => {
-        dispatch(createMovement(getAuthUserID(), {name, equipment, muscles})).then(() => {
+        dispatch(createMovement(userID, {name, equipment, muscles})).then(() => {
             dispatch(clearSelectedEquipment());
             dispatch(clearSelectedMuscles());
             navigation.navigate('MovementList', {forceRefresh: true});

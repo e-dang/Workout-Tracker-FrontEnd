@@ -1,3 +1,6 @@
+import {createActionSet} from '@utils';
+
+export const CREATE_EQUIPMENT = createActionSet('CREATE_EQUIPMENT');
 export const SELECT_EQUIPMENT = 'SELECT_EQUIPMENT';
 export const CLEAR_SELECTED_EQUIPMENT = 'CLEAR_SELECTED_EQUIPMENT';
 export const REMOVE_SELECTED_EQUIPMENT = 'REMOVE_SELECTED_EQUIPMENT';
