@@ -1,35 +1,22 @@
 import React from 'react';
-import EquipmentSelectScreen from '../screens/equipment-select.screen';
-import {useSelector, useDispatch} from 'react-redux';
-import equipmentActions from '../equipment.action';
+import {useDispatch} from 'react-redux';
+import {EquipmentSelectScreen} from '@equipment/screens';
+import {listEquipment, addSelectedEquipment} from '@equipment';
+import {getEquipment, getEquipmentState, getPaginationState, getAuthUserID} from '@utils';
 
-const getEquipment = (paginationKey) => {
-    const paginationState = useSelector((state) => state.pagination);
-    const entityState = useSelector((state) => state.entities);
-    let ids = [];
-
-    try {
-        ids = paginationState.GET_EQUIPMENT[paginationKey].ids;
-    } catch (TypeError) {}
-
-    return ids.map((id) => entityState.equipment[id]);
-};
-
-export default function EquipmentSelectContainer({navigation}) {
+export function EquipmentSelectContainer({navigation}) {
     const dispatch = useDispatch();
-    const equipmentState = useSelector((state) => state.equipment);
-    const authState = useSelector((state) => state.auth);
-    const paginationState = useSelector((state) => state.pagination);
-    const equipment = getEquipment(authState.user.id.toString());
+    const userID = getAuthUserID();
+    const equipment = getEquipment(userID);
 
-    const refresh = () => dispatch(equipmentActions.listEquipment(authState.user.id));
+    const refresh = () => dispatch(listEquipment(userID));
 
     React.useEffect(() => {
         refresh();
     });
 
     const handleSelectEquipment = (equipment) => {
-        dispatch(equipmentActions.addSelectedEquipment(equipment)).then(() => {
+        dispatch(addSelectedEquipment(equipment)).then(() => {
             navigation.pop();
         });
     };
@@ -38,11 +25,11 @@ export default function EquipmentSelectContainer({navigation}) {
         <EquipmentSelectScreen
             navigation={navigation}
             equipment={equipment}
-            selectedEquipment={equipmentState.selectedEquipment}
+            selectedEquipment={getEquipmentState().selectedEquipment}
             handleSelectEquipment={handleSelectEquipment}
             onRefresh={refresh}
-            refreshing={!equipment && paginationState.GET_EQUIPMENT.isFetching}
-            onEndReached={() => dispatch(equipmentActions.listEquipment(authState.user.id, {loadmore: true}))}
+            refreshing={!equipment && getPaginationState('GET_EQUIPMENT').isFetching}
+            onEndReached={() => dispatch(listEquipment(userID, {loadmore: true}))}
         />
     );
 }

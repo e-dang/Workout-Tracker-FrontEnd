@@ -2,10 +2,9 @@ import React from 'react';
 import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
-import {store, persistor} from './root.store';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import SplashScreen from './src/auth/screens/splash.screen';
-import WorkoutTracker from './routes';
+import {SplashScreen} from '@auth/screens/splash.screen';
+import {store, persistor, WorkoutTracker} from '@root';
 
 const theme = {
     ...DefaultTheme,

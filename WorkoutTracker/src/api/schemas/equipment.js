@@ -1,5 +1,5 @@
 import {schema} from 'normalizr';
-import {userSchema} from './users';
+import {userSchema} from '@api/schemas/users';
 
 export const equipmentSchema = new schema.Entity('equipment', {
     owner: userSchema,

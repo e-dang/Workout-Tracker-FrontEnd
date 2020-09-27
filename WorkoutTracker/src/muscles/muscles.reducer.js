@@ -1,4 +1,4 @@
-import {SELECT_MUSCLES, REMOVE_SELECTED_MUSCLE, CLEAR_SELECTED_MUSCLES} from './muscles.type';
+import {SELECT_MUSCLES, REMOVE_SELECTED_MUSCLE, CLEAR_SELECTED_MUSCLES} from '@muscles/muscles.type';
 
 const initialState = {
     selectedMuscles: [],

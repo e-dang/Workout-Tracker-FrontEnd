@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Title, FAB, withTheme} from 'react-native-paper';
-import SelectedChipSet from './selected-chip-set.component';
+import {SelectedChipSet} from '@components/selected-chip-set.component';
 
-function SelectChipsSection(props) {
+function _SelectChipsSection(props) {
     const {title, data, onClose, onAdd} = props;
 
     return (
@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default withTheme(SelectChipsSection);
+export const SelectChipsSection = withTheme(_SelectChipsSection);

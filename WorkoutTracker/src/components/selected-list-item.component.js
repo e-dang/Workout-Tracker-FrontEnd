@@ -1,7 +1,7 @@
 import React from 'react';
 import {withTheme, List, useTheme} from 'react-native-paper';
 
-function SelectedListItem(props) {
+function _SelectedListItem(props) {
     const {colors} = useTheme();
     return (
         <List.Item
@@ -12,4 +12,4 @@ function SelectedListItem(props) {
     );
 }
 
-export default withTheme(SelectedListItem);
+export const SelectedListItem = withTheme(_SelectedListItem);

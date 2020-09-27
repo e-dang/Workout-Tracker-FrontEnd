@@ -1,4 +1,4 @@
-import {CREATE_MOVEMENT, DELETE_MOVEMENT} from './movements.type';
+import {CREATE_MOVEMENT, DELETE_MOVEMENT} from '@movements/movements.type';
 
 const initialState = {
     isPendingCreateMovement: false,

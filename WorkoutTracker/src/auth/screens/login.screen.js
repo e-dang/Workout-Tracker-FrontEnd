@@ -3,7 +3,7 @@ import {TextInput, HelperText, Button, ActivityIndicator} from 'react-native-pap
 import {View, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-export default function LoginScreen(props) {
+export function LoginScreen(props) {
     const {handleLogin, isGettingAuthData, doesNotHaveAuthData, credentialsAreInvalid} = props;
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');

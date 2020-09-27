@@ -1,7 +1,7 @@
 import React from 'react';
-import MultiSelectScreen from '../../components/multi-select-screen.component';
+import {MultiSelectScreen} from '@components';
 
-export default function MusclesSelectScreen(props) {
+export function MusclesSelectScreen(props) {
     const {navigation, muscles, selectedMuscles, handleSelectMuscles, onRefresh, refreshing, onEndReached} = props;
 
     return (

@@ -1,41 +1,26 @@
-import React, {useState} from 'react';
-import MovementListScreen from '../screens/movements-list.screen';
-import {useDispatch, useSelector} from 'react-redux';
-import {movementActions} from '../movements.action';
+import React from 'react';
+import {useDispatch} from 'react-redux';
+import {MovementListScreen} from '@movements/screens'; //'@movements/screens/movements-list.screen';
+import {listMovements} from '@movements';
+import {getMovements, getMovementState, getPaginationState, getAuthUserID} from '@utils';
 
-const getMovements = (paginationKey) => {
-    const paginationState = useSelector((state) => state.pagination);
-    const entityState = useSelector((state) => state.entities);
-    let ids = [];
-
-    try {
-        ids = paginationState.GET_MOVEMENTS[paginationKey].ids;
-    } catch (TypeError) {
-        ids = [];
-    }
-
-    return ids.map((id) => entityState.movements[id]);
-};
-
-export default function MovementListContainer({route, navigation}) {
+export function MovementListContainer({route, navigation}) {
     const dispatch = useDispatch();
-    const movementState = useSelector((state) => state.movements);
-    const authState = useSelector((state) => state.auth);
-    const paginationState = useSelector((state) => state.pagination);
-    const movements = getMovements(authState.user.id.toString());
+    const userID = getAuthUserID();
+    const movements = getMovements(userID);
 
     React.useEffect(() => {
-        dispatch(movementActions.listMovements(authState.user.id, route.params));
+        dispatch(listMovements(userID, route.params));
     }, [route.params]);
 
     return (
         <MovementListScreen
             movements={movements}
-            isPendingGetMovements={movementState.isPendingGetMovements}
+            isPendingGetMovements={getMovementState().isPendingGetMovements}
             navigation={navigation}
-            refreshing={!movements && paginationState.GET_MOVEMENTS.isFetching}
-            onRefresh={() => dispatch(movementActions.listMovements(authState.user.id, {forceRefresh: true}))}
-            onEndReached={() => dispatch(movementActions.listMovements(authState.user.id, {loadMore: true}))}
+            refreshing={!movements && getPaginationState('GET_MOVEMENTS').isFetching}
+            onRefresh={() => dispatch(listMovements(userID, {forceRefresh: true}))}
+            onEndReached={() => dispatch(listMovements(userID, {loadMore: true}))}
         />
     );
 }

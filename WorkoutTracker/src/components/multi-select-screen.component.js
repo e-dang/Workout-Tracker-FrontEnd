@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import {Appbar, Searchbar, withTheme} from 'react-native-paper';
+import {Appbar, withTheme} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import SubmitButton from './submit-button.component';
-import MultiSelectList from './multi-select-list.component';
+import {SubmitButton} from '@components/submit-button.component';
+import {MultiSelectList} from '@components/multi-select-list.component';
 
-function MultiSelectScreen(props) {
+function _MultiSelectScreen(props) {
     const {title, onBackPress, data, preSelected, keyExtractor, onRefresh, refreshing, onEndReached, onSubmit} = props;
 
     const [selectedItems, setSelectedItems] = useState(preSelected);
@@ -40,9 +40,9 @@ function MultiSelectScreen(props) {
     );
 }
 
-MultiSelectScreen.defaultProps = {
+_MultiSelectScreen.defaultProps = {
     onBackPress: undefined,
     preSelected: [],
 };
 
-export default withTheme(MultiSelectScreen);
+export const MultiSelectScreen = withTheme(_MultiSelectScreen);

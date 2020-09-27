@@ -3,9 +3,9 @@ import {useSelector} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Home from './src/components/Home';
-import AuthContainer from './src/auth/containers/auth.container';
-import MovementNavigator from './src/movements/movements.navigator';
+import Home from '@root/Home';
+import {AuthContainer} from '@auth/containers';
+import {MovementNavigator} from '@movements/containers';
 
 const tabNavigator = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -20,7 +20,7 @@ const MainNavigator = () => {
     );
 };
 
-export default function WorkoutTracker() {
+export function WorkoutTracker() {
     const auth = useSelector((state) => state.auth);
     console.log(auth);
 

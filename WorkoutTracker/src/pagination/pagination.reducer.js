@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import * as Actions from './pagination.action';
+import * as Actions from '@pagination/pagination.action';
 
 const initialState = {
     ids: [],

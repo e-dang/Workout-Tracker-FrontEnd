@@ -1,8 +1,8 @@
 import React from 'react';
 import {withTheme, List} from 'react-native-paper';
 
-function UnselectedListItem(props) {
+function _UnselectedListItem(props) {
     return <List.Item {...props} />;
 }
 
-export default withTheme(UnselectedListItem);
+export const UnselectedListItem = withTheme(_UnselectedListItem);

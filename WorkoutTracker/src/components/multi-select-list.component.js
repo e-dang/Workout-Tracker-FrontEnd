@@ -1,10 +1,10 @@
 import React from 'react';
 import {Divider, withTheme} from 'react-native-paper';
 import {FlatList, View} from 'react-native';
-import UnselectedListItem from './unselected-list-item.component';
-import SelectedListItem from './selected-list-item.component';
+import {UnselectedListItem} from '@components/unselected-list-item.component';
+import {SelectedListItem} from '@components/selected-list-item.component';
 
-function MultiSelectList(props) {
+function _MultiSelectList(props) {
     const {data, onSelect, onUnselect, selectedItems, keyExtractor, onRefresh, refreshing, onEndReached} = props;
 
     const isSelected = (item) => {
@@ -35,8 +35,8 @@ function MultiSelectList(props) {
     );
 }
 
-MultiSelectList.defaultProps = {
+_MultiSelectList.defaultProps = {
     keyExtractor: (item) => item.id,
 };
 
-export default withTheme(MultiSelectList);
+export const MultiSelectList = withTheme(_MultiSelectList);
