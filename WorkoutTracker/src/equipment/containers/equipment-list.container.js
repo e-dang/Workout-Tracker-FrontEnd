@@ -10,7 +10,7 @@ export function EquipmentListContainer({route, navigation}) {
     const equipment = getEquipment(userID);
 
     React.useEffect(() => {
-        dispatch(listEquipment(userID), route.params);
+        dispatch(listEquipment(userID, route.params));
     }, [route.params]);
 
     return (
