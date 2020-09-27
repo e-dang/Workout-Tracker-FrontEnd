@@ -1,16 +1,17 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
 import {withTheme} from 'react-native-paper';
+import {StyleSheet} from 'react-native';
 import {CustomTextInput} from '@components/custom-text-input.component';
 
-function _ShortTextInput(props) {
+function _LongTextComponent(props) {
     return <CustomTextInput style={styles.textInput} {...props} />;
 }
 
 const styles = StyleSheet.create({
     textInput: {
+        height: 100,
         marginHorizontal: 50,
     },
 });
 
-export const ShortTextInput = withTheme(_ShortTextInput);
+export const LongTextInput = withTheme(_LongTextComponent);
