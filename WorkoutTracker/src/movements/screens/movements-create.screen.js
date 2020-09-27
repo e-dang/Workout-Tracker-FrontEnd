@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
-import {Text, ScrollView} from 'react-native';
-import {TextInput, HelperText, Appbar} from 'react-native-paper';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {SelectChipsSection, SubmitButton} from '@components';
+import {ScrollView} from 'react-native';
+import {Appbar} from 'react-native-paper';
+import {ContainerView, SelectChipsSection, SubmitButton, ShortTextInput} from '@components';
 
 export function MovementCreateScreen(props) {
     const {
@@ -16,16 +15,19 @@ export function MovementCreateScreen(props) {
     const [name, setName] = useState('');
 
     return (
-        <SafeAreaView style={{flex: 1}}>
+        <ContainerView>
             <Appbar.Header>
                 <Appbar.BackAction onPress={() => navigation.pop()} />
                 <Appbar.Content title="Create Movement" />
             </Appbar.Header>
             <ScrollView>
-                <TextInput mode="outlined" label="Name" value={name} onChangeText={(text) => setName(text)} />
-                <HelperText type="error" visible={false}>
-                    <Text>Error.</Text>
-                </HelperText>
+                <ShortTextInput
+                    label="Name"
+                    value={name}
+                    onChangeText={(text) => setName(text)}
+                    errVisible={false}
+                    errMessage={'Error.'}
+                />
                 <SelectChipsSection
                     title={'Equipment'}
                     data={selectedEquipment.map((piece) => piece.name)}
@@ -40,6 +42,6 @@ export function MovementCreateScreen(props) {
                 />
             </ScrollView>
             <SubmitButton onPress={() => handleCreateMovement(name, selectedEquipment, selectedMuscles)} />
-        </SafeAreaView>
+        </ContainerView>
     );
 }
