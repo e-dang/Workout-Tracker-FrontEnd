@@ -2,8 +2,8 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {FAB, withTheme} from 'react-native-paper';
 
-function _SubmitButton({onPress}) {
-    return <FAB style={styles.fab} label="Submit" onPress={onPress} />;
+function _SubmitButton(props) {
+    return <FAB style={styles.fab} label="Submit" {...props} />;
 }
 
 const styles = StyleSheet.create({

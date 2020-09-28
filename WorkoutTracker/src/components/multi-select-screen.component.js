@@ -35,7 +35,10 @@ function _MultiSelectScreen(props) {
                 refreshing={refreshing}
                 onEndReached={onEndReached}
             />
-            <SubmitButton onPress={() => onSubmit(selectedItems)} />
+            <SubmitButton
+                style={{position: 'absolute', left: 75, right: 75, bottom: 20}}
+                onPress={() => onSubmit(selectedItems)}
+            />
         </SafeAreaView>
     );
 }
