@@ -4,6 +4,8 @@ const initialState = {
     muscles: {},
     equipment: {},
     movements: {},
+    exerciseTemplates: {},
+    workoutTemplates: {},
 };
 
 export const entityReducer = (state = initialState, action) => {
