@@ -56,6 +56,16 @@ export const getMovements = (paginationKey) => {
     return getDataFromPagination('movements', 'GET_MOVEMENTS', paginationKey);
 };
 
+export const getWorkoutTemplates = (paginationKey) => {
+    return getDataFromPagination('workoutTemplates', 'GET_WORKOUT_TEMPLATES', paginationKey);
+};
+
+export const getWorkoutState = (getState = undefined) => {
+    if (getState) return getState().workouts;
+
+    return useSelector((state) => state.workouts);
+};
+
 export const getPaginationState = (action, getState = undefined) => {
     if (getState) return getState().pagination[action];
 
