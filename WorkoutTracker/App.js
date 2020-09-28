@@ -11,7 +11,6 @@ const theme = {
 };
 
 export default function App() {
-    persistor.purge();
     return (
         <Provider store={store}>
             <PaperProvider theme={theme}>

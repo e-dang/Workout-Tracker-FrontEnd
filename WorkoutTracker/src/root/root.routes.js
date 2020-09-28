@@ -26,7 +26,6 @@ const MainNavigator = () => {
 
 export function WorkoutTracker() {
     const auth = useSelector((state) => state.auth);
-    console.log(auth);
 
     return (
         <NavigationContainer>
