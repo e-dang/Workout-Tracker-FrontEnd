@@ -14,6 +14,9 @@ function _ContainerView({children, props}) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignContent: 'center',
     },
 });
 

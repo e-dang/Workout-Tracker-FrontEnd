@@ -8,10 +8,7 @@ function _SubmitButton({onPress}) {
 
 const styles = StyleSheet.create({
     fab: {
-        position: 'absolute',
-        left: 75,
-        right: 75,
-        bottom: 20,
+        marginHorizontal: 75,
     },
 });
 

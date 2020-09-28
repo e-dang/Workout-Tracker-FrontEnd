@@ -5,7 +5,7 @@ import {StyleSheet, View} from 'react-native';
 
 export function WelcomeScreen({navigation}) {
     return (
-        <ContainerView style={{justifyContent: 'center'}}>
+        <ContainerView>
             <View style={styles.title}>
                 <Title>Welcome to the Free Workout Tracker!</Title>
             </View>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import {ContainerView, ShortTextInput, SubmitButton, LoadingIndicator} from '@components';
 
 export function SignUpScreen(props) {
@@ -11,7 +11,7 @@ export function SignUpScreen(props) {
 
     return (
         <ContainerView>
-            <View style={styles.container} opacity={isRegistering ? 0.5 : 1}>
+            <View opacity={isRegistering ? 0.5 : 1}>
                 <ShortTextInput
                     label="Username"
                     value={username}
@@ -39,11 +39,3 @@ export function SignUpScreen(props) {
         </ContainerView>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignContent: 'center',
-    },
-});

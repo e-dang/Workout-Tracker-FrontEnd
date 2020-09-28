@@ -1,6 +1,6 @@
 import React from 'react';
 import {HelperText} from 'react-native-paper';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import {ContainerView, ShortTextInput, SubmitButton, LoadingIndicator} from '@components';
 
 export function LoginScreen(props) {
@@ -10,7 +10,7 @@ export function LoginScreen(props) {
 
     return (
         <ContainerView>
-            <View style={styles.container} opacity={isGettingAuthData ? 0.5 : 1}>
+            <View opacity={isGettingAuthData ? 0.5 : 1}>
                 <HelperText type="error" visible={areCredentialsInvalid}>
                     Invalid username and/or password.
                 </HelperText>
@@ -33,11 +33,3 @@ export function LoginScreen(props) {
         </ContainerView>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignContent: 'center',
-    },
-});
