@@ -1,59 +1,35 @@
 import React from 'react';
-import {TextInput, HelperText, Button, ActivityIndicator} from 'react-native-paper';
-import {View, StyleSheet} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {HelperText} from 'react-native-paper';
+import {View} from 'react-native';
+import {ContainerView, ShortTextInput, SubmitButton, LoadingIndicator} from '@components';
 
 export function LoginScreen(props) {
-    const {handleLogin, isGettingAuthData, doesNotHaveAuthData, credentialsAreInvalid} = props;
+    const {handleLogin, isGettingAuthData, areCredentialsInvalid} = props;
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
 
     return (
-        <SafeAreaView>
-            {doesNotHaveAuthData() && (
-                <View>
-                    <HelperText type="error" visible={credentialsAreInvalid()}>
-                        Invalid username and/or password.
-                    </HelperText>
-                    <TextInput
-                        mode="outlined"
-                        label="Username"
-                        value={username}
-                        onChangeText={(text) => setUsername(text)}
-                    />
-                    <TextInput
-                        mode="outlined"
-                        label="Password"
-                        secureTextEntry
-                        value={password}
-                        onChangeText={(text) => setPassword(text)}
-                    />
-                    <Button
-                        mode="outlined"
-                        onPress={() => {
-                            handleLogin(username, password);
-                        }}>
-                        Submit
-                    </Button>
-                </View>
-            )}
-            {isGettingAuthData() && (
-                <View style={styles.indicator}>
-                    <ActivityIndicator animating={true} size="large" />
-                </View>
-            )}
-        </SafeAreaView>
+        <ContainerView>
+            <View opacity={isGettingAuthData ? 0.5 : 1}>
+                <HelperText type="error" visible={areCredentialsInvalid}>
+                    Invalid username and/or password.
+                </HelperText>
+                <ShortTextInput
+                    label="Username"
+                    value={username}
+                    onChangeText={(text) => setUsername(text)}
+                    errVisible={false}
+                />
+                <ShortTextInput
+                    secureTextEntry
+                    label="Password"
+                    value={password}
+                    onChangeText={(text) => setPassword(text)}
+                    errVisible={false}
+                />
+                <SubmitButton onPress={() => handleLogin(username, password)} />
+            </View>
+            {isGettingAuthData && <LoadingIndicator />}
+        </ContainerView>
     );
 }
-
-const styles = StyleSheet.create({
-    indicator: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});

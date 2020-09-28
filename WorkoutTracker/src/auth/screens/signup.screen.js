@@ -1,7 +1,6 @@
 import React from 'react';
-import {TextInput, HelperText, Button, ActivityIndicator} from 'react-native-paper';
-import {View, StyleSheet, Text} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {View} from 'react-native';
+import {ContainerView, ShortTextInput, SubmitButton, LoadingIndicator} from '@components';
 
 export function SignUpScreen(props) {
     const {handleRegistration, usernameError, passwordError, confirmPasswordError, isRegistering} = props;
@@ -11,62 +10,32 @@ export function SignUpScreen(props) {
     const [confirmPassword, setConfirmPassword] = React.useState('');
 
     return (
-        <SafeAreaView>
-            <View>
-                <TextInput
-                    mode="outlined"
+        <ContainerView>
+            <View opacity={isRegistering ? 0.5 : 1}>
+                <ShortTextInput
                     label="Username"
                     value={username}
                     onChangeText={(text) => setUsername(text)}
+                    errVisible={usernameError() != null}
+                    errMessage={usernameError()}
                 />
-                <HelperText type="error" visible={usernameError() != null}>
-                    <Text>{usernameError()}</Text>
-                </HelperText>
-                <TextInput
-                    mode="outlined"
+                <ShortTextInput
                     label="Password"
-                    secureTextEntry
                     value={password}
                     onChangeText={(text) => setPassword(text)}
+                    errVisible={passwordError() != null}
+                    errMessage={passwordError()}
                 />
-                <HelperText type="error" visible={passwordError() != null}>
-                    <Text>{passwordError()}</Text>
-                </HelperText>
-                <TextInput
-                    mode="outlined"
-                    label="Confirm Password"
-                    secureTextEntry
+                <ShortTextInput
+                    label="Username"
                     value={confirmPassword}
                     onChangeText={(text) => setConfirmPassword(text)}
+                    errVisible={confirmPasswordError() != null}
+                    errMessage={confirmPasswordError()}
                 />
-                <HelperText type="error" visible={confirmPasswordError() != null}>
-                    <Text>{confirmPasswordError()}</Text>
-                </HelperText>
-                <Button
-                    mode="outlined"
-                    onPress={() => {
-                        handleRegistration(username, password, confirmPassword);
-                    }}>
-                    Submit
-                </Button>
+                <SubmitButton onPress={() => handleRegistration(username, password, confirmPassword)} />
             </View>
-            {isRegistering && (
-                <View style={styles.indicator}>
-                    <ActivityIndicator animating={true} size="large" />
-                </View>
-            )}
-        </SafeAreaView>
+            {isRegistering && <LoadingIndicator />}
+        </ContainerView>
     );
 }
-
-const styles = StyleSheet.create({
-    indicator: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});

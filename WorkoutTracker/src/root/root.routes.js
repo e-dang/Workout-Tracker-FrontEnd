@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from '@root/Home';
-import {AuthContainer} from '@auth/containers';
+import {AuthNavigator} from '@auth/containers';
 import {MovementNavigator} from '@movements/containers';
 import {EquipmentNavigator} from '@equipment/containers';
 
@@ -30,7 +30,7 @@ export function WorkoutTracker() {
         <NavigationContainer>
             <Stack.Navigator headerMode="none">
                 {auth.isAuthenticated && <Stack.Screen name="Main" component={MainNavigator} />}
-                {!auth.isAuthenticated && <Stack.Screen name="Auth" component={AuthContainer} />}
+                {!auth.isAuthenticated && <Stack.Screen name="Auth" component={AuthNavigator} />}
             </Stack.Navigator>
         </NavigationContainer>
     );
