@@ -1,14 +1,12 @@
 import React from 'react';
-import {Modal, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {ActivityIndicator, withTheme} from 'react-native-paper';
 
 function _LoadingIndicator() {
     return (
-        <Modal transparent onRequestClose={() => null}>
-            <View style={styles.container}>
-                <ActivityIndicator animating={true} size="large" />
-            </View>
-        </Modal>
+        <View style={styles.container}>
+            <ActivityIndicator animating={true} size="large" />
+        </View>
     );
 }
 
