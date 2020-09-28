@@ -7,18 +7,20 @@ import Home from '@root/Home';
 import {AuthNavigator} from '@auth/containers';
 import {MovementNavigator} from '@movements/containers';
 import {EquipmentNavigator} from '@equipment/containers';
+import {WorkoutTemplateNavigator} from '@workout-templates/containers';
 
-const tabNavigator = createBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const MainNavigator = () => {
     return (
-        <tabNavigator.Navigator>
-            <tabNavigator.Screen name="Home" component={Home} />
-            <tabNavigator.Screen name="Equipment" component={EquipmentNavigator} />
+        <Tab.Navigator>
+            <Tab.Screen name="Home" component={Home} />
+            <Tab.Screen name="Equipment" component={EquipmentNavigator} />
             {/* Even though this works with Movement data, we set the title to Exercises to not confuse the user */}
-            <tabNavigator.Screen name="Exercises" component={MovementNavigator} />
-        </tabNavigator.Navigator>
+            <Tab.Screen name="Exercises" component={MovementNavigator} />
+            <Tab.Screen name="Workouts" component={WorkoutTemplateNavigator} />
+        </Tab.Navigator>
     );
 };
 

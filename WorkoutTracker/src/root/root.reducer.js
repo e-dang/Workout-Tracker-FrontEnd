@@ -7,6 +7,7 @@ import {equipmentReducer} from '@equipment';
 import {musclesReducer} from '@muscles';
 import {paginationReducer} from '@pagination';
 import {entityReducer} from '@entities';
+import {workoutTemplateReducer} from '@workout-templates';
 
 const rootPersistConfig = {
     key: 'root',
@@ -16,12 +17,12 @@ const rootPersistConfig = {
 
 const _rootReducer = combineReducers({
     auth: authReducer,
-    movements: movementReducer,
-    equipment: equipmentReducer,
-    muscles: musclesReducer,
-    pagination: paginationReducer,
     entities: entityReducer,
+    pagination: paginationReducer,
+    muscles: musclesReducer,
+    equipment: equipmentReducer,
+    movements: movementReducer,
+    workoutTemplates: workoutTemplateReducer,
 });
 
-// export const rootReducer = persistReducer(rootPersistConfig, _rootReducer);
 export default persistReducer(rootPersistConfig, _rootReducer);
