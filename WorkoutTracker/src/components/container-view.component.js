@@ -3,8 +3,12 @@ import {StyleSheet} from 'react-native';
 import {withTheme} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-function _ContainerView({children}) {
-    return <SafeAreaView style={styles.container}>{children}</SafeAreaView>;
+function _ContainerView({children, props}) {
+    return (
+        <SafeAreaView style={styles.container} {...props}>
+            {children}
+        </SafeAreaView>
+    );
 }
 
 const styles = StyleSheet.create({
