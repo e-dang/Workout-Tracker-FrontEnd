@@ -13,23 +13,11 @@ export function LoginContainer() {
             .catch((err) => {});
     };
 
-    const isGettingAuthData = () => {
-        return authState.isLoggingIn || authState.isPendingUser;
-    };
-    const doesNotHaveAuthData = () => {
-        return !authState.isAuthenticated;
-    };
-
-    const credentialsAreInvalid = () => {
-        return authState.error != null;
-    };
-
     return (
         <LoginScreen
             handleLogin={handleLogin}
-            isGettingAuthData={isGettingAuthData}
-            doesNotHaveAuthData={doesNotHaveAuthData}
-            credentialsAreInvalid={credentialsAreInvalid}
+            isGettingAuthData={authState.isLoggingIn || authState.isPendingUser}
+            areCredentialsInvalid={authState.error != null}
         />
     );
 }
