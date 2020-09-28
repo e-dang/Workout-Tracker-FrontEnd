@@ -3,19 +3,14 @@ import {StyleSheet} from 'react-native';
 import {withTheme} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-function _ContainerView({children, props}) {
-    return (
-        <SafeAreaView style={styles.container} {...props}>
-            {children}
-        </SafeAreaView>
-    );
+function _ContainerView({children, style}) {
+    return <SafeAreaView style={style || styles.container}>{children}</SafeAreaView>;
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'center',
         alignContent: 'center',
     },
 });
