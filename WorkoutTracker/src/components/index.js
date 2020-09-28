@@ -11,3 +11,4 @@ export * from '@components/list-screen.component';
 export * from '@components/short-text-input.component';
 export * from '@components/long-text-input.component';
 export * from '@components/loading-indicator.component';
+export * from '@components/add-list.component';
