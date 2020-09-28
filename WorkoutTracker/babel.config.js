@@ -18,6 +18,7 @@ module.exports = function (api) {
                         '@muscles': './src/muscles',
                         '@pagination': './src/pagination',
                         '@utils': './src/utils',
+                        '@workout-templates': './src/workout-templates',
                     },
                 },
             ],

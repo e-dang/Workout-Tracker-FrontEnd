@@ -58,4 +58,5 @@ export const paginationReducer = combineReducers({
     GET_MUSCLES: paginate(Actions.GET_MUSCLES),
     GET_EQUIPMENT: paginate(Actions.GET_EQUIPMENT),
     GET_MOVEMENTS: paginate(Actions.GET_MOVEMENTS),
+    GET_WORKOUT_TEMPLATES: paginate(Actions.GET_WORKOUT_TEMPLATES),
 });
