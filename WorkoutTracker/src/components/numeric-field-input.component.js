@@ -1,22 +1,21 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {FAB, TextInput, Button, Text, withTheme} from 'react-native-paper';
 
 export function _NumericFieldInput(props) {
-    const {title, label, labelPress} = props;
-    const [num, setNum] = useState(0);
+    const {title, label, labelPress, value, onValueChange} = props;
 
     const decrement = () => {
-        if (num > 0) setNum(num - 1);
+        if (value > 0) onValueChange(value - 1);
     };
 
     const increment = () => {
-        setNum(num + 1);
+        onValueChange(value + 1);
     };
 
     const convertToInt = (val) => {
-        if (!val) setNum(0);
-        else setNum(parseInt(val));
+        if (!val) onValueChange(0);
+        else onValueChange(parseInt(val));
     };
 
     return (
@@ -43,7 +42,7 @@ export function _NumericFieldInput(props) {
                         maxLength={3}
                         multiline={false}
                         textAlign="center"
-                        value={num.toString()}
+                        value={value.toString()}
                         onChangeText={convertToInt}
                         keyboardType="number-pad"
                         returnKeyType="done"

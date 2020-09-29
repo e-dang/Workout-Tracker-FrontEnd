@@ -1,19 +1,19 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {NumericFieldInput} from '@components/numeric-field-input.component';
+import {POUNDS, KILOGRAMS} from '@utils';
 
-const POUNDS = 'lb';
-const KILOGRAMS = 'kg';
-
-export function WeightFieldInput() {
-    const [units, setUnits] = useState(POUNDS);
+export function WeightFieldInput(props) {
+    const {units, onUnitsChange, weight, onWeightChange} = props;
 
     return (
         <View style={styles.container}>
             <NumericFieldInput
+                value={weight}
+                onValueChange={onWeightChange}
                 title="Weight"
                 label={units}
-                labelPress={() => setUnits(units == POUNDS ? KILOGRAMS : POUNDS)}
+                labelPress={() => onUnitsChange(units == POUNDS ? KILOGRAMS : POUNDS)}
             />
         </View>
     );
