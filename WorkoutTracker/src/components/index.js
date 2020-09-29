@@ -13,3 +13,5 @@ export * from '@components/long-text-input.component';
 export * from '@components/loading-indicator.component';
 export * from '@components/add-list.component';
 export * from '@components/single-select-list.component';
+export * from '@components/numeric-field-input.component';
+export * from '@components/weight-field-input.component';
