@@ -12,7 +12,7 @@ export function ExerciseTemplateCreateContainer({route, navigation}) {
     const handleCreateExerciseTemplate = (sets, units) => {
         dispatch(createExerciseTemplate(userID, {workoutTemplate, movement: route.params.movement, units, sets})).then(
             () => {
-                navigation.pop();
+                navigation.navigate('CreateWorkoutTemplate', {forceRefresh: true});
             },
         );
     };
