@@ -6,6 +6,7 @@ import {
 
 import {denormalize} from 'normalizr';
 import {workoutTemplateSchema} from '@api';
+import {GET_WORKOUT_TEMPLATE} from './workout-templates.type';
 
 const initalState = {
     uncommittedWorkoutTemplate: null,
@@ -17,6 +18,23 @@ const initalState = {
 
 export const workoutTemplateReducer = (state = initalState, action) => {
     switch (action.type) {
+        case GET_WORKOUT_TEMPLATE.PENDING:
+            return {
+                ...state,
+                isPendingGetWorkoutTemplate: true,
+                error: false,
+            };
+        case GET_WORKOUT_TEMPLATE.SUCCESS:
+            return {
+                ...state,
+                isPendingGetWorkoutTemplate: false,
+            };
+        case GET_WORKOUT_TEMPLATE.ERROR:
+            return {
+                ...state,
+                isPendingGetWorkoutTemplate: false,
+                error: action.payload,
+            };
         case CREATE_WORKOUT_TEMPLATE.PENDING:
             return {
                 ...state,
