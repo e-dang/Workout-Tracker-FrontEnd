@@ -9,7 +9,7 @@ export function _AddList(props) {
     return (
         <View>
             <FlatList
-                renderItem={({item}) => <List.Item title={item.name} />}
+                renderItem={({item}) => <List.Item title={props.titleExtractor(item)} />}
                 ItemSeparatorComponent={Divider}
                 {...props}
             />
@@ -17,5 +17,9 @@ export function _AddList(props) {
         </View>
     );
 }
+
+_AddList.defaultProps = {
+    titleExtractor: (item) => `${item.name}`,
+};
 
 export const AddList = withTheme(_AddList);
