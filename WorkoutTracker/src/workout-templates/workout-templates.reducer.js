@@ -1,18 +1,21 @@
 import {
+    GET_WORKOUT_TEMPLATE,
     CREATE_WORKOUT_TEMPLATE,
     UPDATE_WORKOUT_TEMPLATE,
     COMMIT_WORKOUT_TEMPLATE,
+    REFRESH_WORKOUT_TEMPLATE,
 } from '@workout-templates/workout-templates.type';
 
 import {denormalize} from 'normalizr';
 import {workoutTemplateSchema} from '@api';
-import {GET_WORKOUT_TEMPLATE} from './workout-templates.type';
 
 const initalState = {
     uncommittedWorkoutTemplate: null,
     isBuildingWorkoutTemplate: false,
+    isPendingGetWorkoutTemplate: false,
     isPendingCreateWorkoutTemplate: false,
     isPendingUpdateWorkoutTemplate: false,
+    isPendingRefreshWorkoutTemplate: false,
     error: null,
 };
 
@@ -76,6 +79,28 @@ export const workoutTemplateReducer = (state = initalState, action) => {
             return {
                 ...state,
                 isPendingUpdateWorkoutTemplate: false,
+                error: action.payload,
+            };
+        case REFRESH_WORKOUT_TEMPLATE.PENDING:
+            return {
+                ...state,
+                isPendingRefreshWorkoutTemplate: true,
+                error: false,
+            };
+        case REFRESH_WORKOUT_TEMPLATE.SUCCESS:
+            return {
+                ...state,
+                isPendingRefreshWorkoutTemplate: false,
+                uncommittedWorkoutTemplate: denormalize(
+                    action.payload.result,
+                    workoutTemplateSchema,
+                    action.payload.entities,
+                ),
+            };
+        case REFRESH_WORKOUT_TEMPLATE.ERROR:
+            return {
+                ...state,
+                isPendingRefreshWorkoutTemplate: false,
                 error: action.payload,
             };
         case COMMIT_WORKOUT_TEMPLATE:

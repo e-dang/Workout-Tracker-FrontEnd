@@ -2,13 +2,15 @@ import {
     GET_WORKOUT_TEMPLATE,
     CREATE_WORKOUT_TEMPLATE,
     UPDATE_WORKOUT_TEMPLATE,
+    REFRESH_WORKOUT_TEMPLATE,
+    COMMIT_WORKOUT_TEMPLATE,
 } from '@workout-templates/workout-templates.type';
 import {GET_WORKOUT_TEMPLATES} from '@pagination';
 import {client, workoutTemplateSchema, workoutTemplateListSchema} from '@api';
 import {extractRelatedObjLink} from '@utils';
 
-const getWorkoutTemplate = (workoutTemplate) => {
-    return client.get(extractRelatedObjLink(workoutTemplate), workoutTemplateSchema, GET_WORKOUT_TEMPLATE);
+const getWorkoutTemplate = (workoutTemplateID) => {
+    return client.get(`workouts/templates/${workoutTemplateID}/`, workoutTemplateSchema, GET_WORKOUT_TEMPLATE);
 };
 
 const listWorkoutTemplates = (userID, paginationParams = {}) => {
@@ -27,4 +29,12 @@ const createWorkoutTemplate = (userID, {name = 'Untitled', exercises}) => {
     );
 };
 
-export {getWorkoutTemplate, listWorkoutTemplates, createWorkoutTemplate};
+const refreshWorkoutTemplate = (workoutTemplate) => {
+    return client.get(extractRelatedObjLink(workoutTemplate), workoutTemplateSchema, REFRESH_WORKOUT_TEMPLATE);
+};
+
+const commitWorkoutTemplate = () => async (dispatch) => {
+    return dispatch({type: COMMIT_WORKOUT_TEMPLATE});
+};
+
+export {getWorkoutTemplate, listWorkoutTemplates, createWorkoutTemplate, refreshWorkoutTemplate, commitWorkoutTemplate};
