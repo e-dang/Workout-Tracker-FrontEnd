@@ -60,10 +60,14 @@ export const getWorkoutTemplates = (paginationKey) => {
     return getDataFromPagination('workoutTemplates', 'GET_WORKOUT_TEMPLATES', paginationKey);
 };
 
-export const getWorkoutState = (getState = undefined) => {
-    if (getState) return getState().workouts;
+export const getWorkoutTemplateState = (getState = undefined) => {
+    if (getState) return getState().workoutTemplates;
 
-    return useSelector((state) => state.workouts);
+    return useSelector((state) => state.workoutTemplates);
+};
+
+export const getUncommittedWorkoutTemplate = () => {
+    return getWorkoutTemplateState().uncommittedWorkoutTemplate;
 };
 
 export const getPaginationState = (action, getState = undefined) => {
