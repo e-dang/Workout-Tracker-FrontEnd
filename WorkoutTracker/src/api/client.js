@@ -36,6 +36,33 @@ const axiosClient = axios.create({
 });
 
 export const client = {
+    get: (url, schema, action) => async (dispatch, getState) => {
+        dispatch({
+            type: action.PENDING,
+        });
+
+        const authToken = getAuthToken(getState);
+        return axiosClient
+            .get(url, constructHeader(authToken))
+            .then((resp) => {
+                const normalizedJson = normalize(getData(resp), schema);
+
+                dispatch({
+                    type: action.SUCCESS,
+                    payload: normalizedJson,
+                });
+
+                return Promise.resolve();
+            })
+            .catch((err) => {
+                dispatch({
+                    type: action.ERROR,
+                    payload: err.response.data,
+                });
+
+                return Promise.reject(err);
+            });
+    },
     list: (url, schema, action, paginationParams = {}) => async (dispatch, getState) => {
         // pagination handling
         const {paginationKey, forceRefresh = false, loadMore = false} = paginationParams;
