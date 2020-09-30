@@ -104,12 +104,55 @@ export const client = {
             type: action.PENDING,
         });
 
-        const authToken = useState().auth.authToken;
+        const authToken = getAuthToken(useState);
         return axiosClient
             .post(url, data, constructHeader(authToken))
             .then((resp) => {
                 let normalizedJson = normalize(getData(resp), schema);
-                delete normalizedJson.result;
+
+                dispatch({
+                    type: action.SUCCESS,
+                    payload: normalizedJson,
+                });
+                return Promise.resolve();
+            })
+            .catch((err) => {
+                dispatch({type: action.ERROR});
+                return Promise.reject(err);
+            });
+    },
+    put: (url, data, schema, action) => async (dispatch, useState) => {
+        dispatch({
+            type: action.PENDING,
+        });
+
+        const authToken = getAuthToken(useState);
+        return axiosClient
+            .put(url, data, constructHeader(authToken))
+            .then((resp) => {
+                let normalizedJson = normalize(getData(resp), schema);
+
+                dispatch({
+                    type: action.SUCCESS,
+                    payload: normalizedJson,
+                });
+                return Promise.resolve();
+            })
+            .catch((err) => {
+                dispatch({type: action.ERROR});
+                return Promise.reject(err);
+            });
+    },
+    patch: (url, data, schema, action) => async (dispatch, useState) => {
+        dispatch({
+            type: action.PENDING,
+        });
+
+        const authToken = getAuthToken(useState);
+        return axiosClient
+            .put(url, data, constructHeader(authToken))
+            .then((resp) => {
+                let normalizedJson = normalize(getData(resp), schema);
 
                 dispatch({
                     type: action.SUCCESS,
