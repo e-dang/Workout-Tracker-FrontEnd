@@ -13,7 +13,7 @@ export function _SetAdder(props) {
             <FlatList
                 style={styles.list}
                 renderItem={({item}) => (
-                    <List.Item titleStyle={styles.listItem} title={`${item.reps} X ${item.weight} ${item.units}`} />
+                    <List.Item titleStyle={styles.listItem} title={`${item.reps} X ${item.weight} ${units}`} />
                 )}
                 data={sets}
                 keyExtractor={(item, idx) => `${idx}`}
