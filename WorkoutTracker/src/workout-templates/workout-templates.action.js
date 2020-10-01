@@ -30,6 +30,11 @@ const createWorkoutTemplate = (userID, {name = 'Untitled', exercises}) => {
     );
 };
 
+const updateWorkoutTemplate = (workoutTemplate, {name}) => {
+    console.log(name);
+    return client.patch(extractRelatedObjLink(workoutTemplate), {name}, workoutTemplateSchema, UPDATE_WORKOUT_TEMPLATE);
+};
+
 const refreshWorkoutTemplate = (workoutTemplate) => {
     return client.get(extractRelatedObjLink(workoutTemplate), workoutTemplateSchema, REFRESH_WORKOUT_TEMPLATE);
 };
@@ -39,13 +44,14 @@ const commitWorkoutTemplate = () => async (dispatch) => {
 };
 
 const deleteWorkoutTemplate = (workoutTemplate) => {
-    return client.delete(workoutTemplate.url, DELETE_WORKOUT_TEMPLATE);
+    return client.delete(extractRelatedObjLink(workoutTemplate), DELETE_WORKOUT_TEMPLATE);
 };
 
 export {
     getWorkoutTemplate,
     listWorkoutTemplates,
     createWorkoutTemplate,
+    updateWorkoutTemplate,
     refreshWorkoutTemplate,
     commitWorkoutTemplate,
     deleteWorkoutTemplate,
