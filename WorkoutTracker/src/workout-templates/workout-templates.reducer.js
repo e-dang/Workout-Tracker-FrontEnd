@@ -4,6 +4,7 @@ import {
     UPDATE_WORKOUT_TEMPLATE,
     COMMIT_WORKOUT_TEMPLATE,
     REFRESH_WORKOUT_TEMPLATE,
+    DELETE_WORKOUT_TEMPLATE,
 } from '@workout-templates/workout-templates.type';
 
 import {denormalize} from 'normalizr';
@@ -16,6 +17,7 @@ const initalState = {
     isPendingCreateWorkoutTemplate: false,
     isPendingUpdateWorkoutTemplate: false,
     isPendingRefreshWorkoutTemplate: false,
+    isPendingDeleteWorkoutTemplate: false,
     error: null,
 };
 
@@ -105,9 +107,27 @@ export const workoutTemplateReducer = (state = initalState, action) => {
             };
         case COMMIT_WORKOUT_TEMPLATE:
             return {
+                ...state,
                 uncommittedWorkoutTemplate: null,
                 isBuildingWorkoutTemplate: false,
                 error: null,
+            };
+        case DELETE_WORKOUT_TEMPLATE.PENDING:
+            return {
+                ...state,
+                isPendingDeleteWorkoutTemplate: true,
+                error: null,
+            };
+        case DELETE_WORKOUT_TEMPLATE.SUCCESS:
+            return {
+                ...state,
+                isPendingDeleteWorkoutTemplate: false,
+            };
+        case DELETE_WORKOUT_TEMPLATE.ERROR:
+            return {
+                ...state,
+                isPendingDeleteWorkoutTemplate: false,
+                error: action.payload,
             };
         default:
             return state;

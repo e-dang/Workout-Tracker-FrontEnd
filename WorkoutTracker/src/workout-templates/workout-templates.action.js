@@ -4,6 +4,7 @@ import {
     UPDATE_WORKOUT_TEMPLATE,
     REFRESH_WORKOUT_TEMPLATE,
     COMMIT_WORKOUT_TEMPLATE,
+    DELETE_WORKOUT_TEMPLATE,
 } from '@workout-templates/workout-templates.type';
 import {GET_WORKOUT_TEMPLATES} from '@pagination';
 import {client, workoutTemplateSchema, workoutTemplateListSchema} from '@api';
@@ -37,4 +38,15 @@ const commitWorkoutTemplate = () => async (dispatch) => {
     return dispatch({type: COMMIT_WORKOUT_TEMPLATE});
 };
 
-export {getWorkoutTemplate, listWorkoutTemplates, createWorkoutTemplate, refreshWorkoutTemplate, commitWorkoutTemplate};
+const deleteWorkoutTemplate = (workoutTemplate) => {
+    return client.delete(workoutTemplate.url, DELETE_WORKOUT_TEMPLATE);
+};
+
+export {
+    getWorkoutTemplate,
+    listWorkoutTemplates,
+    createWorkoutTemplate,
+    refreshWorkoutTemplate,
+    commitWorkoutTemplate,
+    deleteWorkoutTemplate,
+};
