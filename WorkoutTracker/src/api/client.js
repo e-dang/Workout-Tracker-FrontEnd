@@ -192,6 +192,30 @@ export const client = {
                 return Promise.reject(err);
             });
     },
+    delete: (url, action) => async (dispatch, useState) => {
+        dispatch({
+            type: action.PENDING,
+        });
+
+        const authToken = getAuthToken(useState);
+        return axiosClient
+            .delete(url, constructHeader(authToken))
+            .then((resp) => {
+                dispatch({
+                    type: action.SUCCESS,
+                });
+
+                return Promise.resolve();
+            })
+            .catch((err) => {
+                dispatch({
+                    type: action.ERROR,
+                    payload: err.response.data,
+                });
+
+                return Promise.reject(err);
+            });
+    },
     login: async (username, password) => {
         return await axiosClient.post(
             'auth/login/',
