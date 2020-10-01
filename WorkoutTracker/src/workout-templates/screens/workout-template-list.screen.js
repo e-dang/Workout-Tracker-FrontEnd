@@ -12,6 +12,7 @@ export function WorkoutTemplateListScreen(props) {
             refreshing={refreshing}
             onRefresh={onRefresh}
             onEndReached={onEndReached}
+            onItemPress={(item) => navigation.push('WorkoutTemplateDetail', {workoutTemplate: item})}
         />
     );
 }
