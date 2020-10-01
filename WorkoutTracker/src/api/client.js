@@ -177,7 +177,7 @@ export const client = {
 
         const authToken = getAuthToken(useState);
         return axiosClient
-            .put(url, data, constructHeader(authToken))
+            .patch(url, data, constructHeader(authToken))
             .then((resp) => {
                 let normalizedJson = normalize(getData(resp), schema);
 
@@ -188,7 +188,7 @@ export const client = {
                 return Promise.resolve();
             })
             .catch((err) => {
-                dispatch({type: action.ERROR});
+                dispatch({type: action.ERROR, payload: err.response.data});
                 return Promise.reject(err);
             });
     },
