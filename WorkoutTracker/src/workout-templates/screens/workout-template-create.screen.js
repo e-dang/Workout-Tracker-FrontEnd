@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Appbar} from 'react-native-paper';
 import {ContainerView, AddList, ShortTextInput, SubmitButton} from '@components';
 
@@ -13,6 +13,7 @@ const getExerciseString = (exercise) => {
 
 export function WorkoutTemplateCreateScreen(props) {
     const {navigation, workoutTemplate = {exercises: []}, onSubmit, onBack} = props;
+    const [name, setName] = useState('');
 
     return (
         <ContainerView>
@@ -20,14 +21,14 @@ export function WorkoutTemplateCreateScreen(props) {
                 <Appbar.BackAction onPress={onBack} />
                 <Appbar.Content title="Create Workout" />
             </Appbar.Header>
-            <ShortTextInput label="Name" />
+            <ShortTextInput label="Name" value={name} onChangeText={(text) => setName(text)} />
             <AddList
                 data={workoutTemplate.exercises}
                 titleExtractor={getExerciseString}
                 keyExtractor={(item, idx) => `${idx}`}
                 onAdd={() => navigation.push('SelectMovement')}
             />
-            <SubmitButton onPress={onSubmit} />
+            <SubmitButton onPress={() => onSubmit(name)} />
         </ContainerView>
     );
 }

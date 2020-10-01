@@ -4,6 +4,7 @@ import {
     deleteWorkoutTemplate,
     commitWorkoutTemplate,
     refreshWorkoutTemplate,
+    updateWorkoutTemplate,
     createWorkoutTemplate,
 } from '@workout-templates';
 import {WorkoutTemplateCreateScreen} from '@workout-templates/screens';
@@ -26,15 +27,17 @@ export function WorkoutTemplateCreateContainer({route, navigation}) {
         }
     }, [route.params]);
 
-    const onSubmit = () => {
-        dispatch(commitWorkoutTemplate()).then(() => navigation.pop());
+    const onSubmit = (name) => {
+        dispatch(updateWorkoutTemplate(workoutTemplate, {name})).then(() =>
+            dispatch(commitWorkoutTemplate()).then(() =>
+                navigation.navigate('ListWorkoutTemplate', {forceRefresh: true}),
+            ),
+        );
     };
 
     const onBack = () => {
         dispatch(deleteWorkoutTemplate(workoutTemplate)).then(() =>
-            dispatch(commitWorkoutTemplate()).then(() =>
-                navigation.navigate('ListWorkoutTemplate', {forceRefresh: true}),
-            ),
+            dispatch(commitWorkoutTemplate()).then(() => navigation.pop()),
         );
     };
 
