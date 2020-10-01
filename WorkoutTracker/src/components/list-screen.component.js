@@ -4,7 +4,17 @@ import {ContainerView} from '@components/container-view.component';
 import {FlatList} from 'react-native';
 
 function _ListScreen(props) {
-    const {title, onCreate, titleExtractor, keyExtractor, data, refreshing, onRefresh, onEndReached} = props;
+    const {
+        title,
+        onCreate,
+        titleExtractor,
+        keyExtractor,
+        data,
+        onItemPress,
+        refreshing,
+        onRefresh,
+        onEndReached,
+    } = props;
 
     return (
         <ContainerView>
@@ -13,7 +23,7 @@ function _ListScreen(props) {
                 <Appbar.Action icon="plus" onPress={onCreate} />
             </Appbar.Header>
             <FlatList
-                renderItem={({item}) => <List.Item title={titleExtractor(item)} />}
+                renderItem={({item}) => <List.Item onPress={() => onItemPress(item)} title={titleExtractor(item)} />}
                 keyExtractor={keyExtractor}
                 ItemSeparatorComponent={Divider}
                 data={data}
