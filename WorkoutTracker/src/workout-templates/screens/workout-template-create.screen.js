@@ -1,15 +1,7 @@
 import React, {useState} from 'react';
 import {Appbar} from 'react-native-paper';
 import {ContainerView, AddList, ShortTextInput, SubmitButton} from '@components';
-
-const getExerciseString = (exercise) => {
-    let str = `${exercise.name} `;
-    let workload;
-    for (workload of exercise.workloads) {
-        str = str.concat(`${workload.sets.length} sets`);
-    }
-    return str;
-};
+import {getExerciseString} from '@utils';
 
 export function WorkoutTemplateCreateScreen(props) {
     const {navigation, workoutTemplate = {exercises: []}, onSubmit, onBack} = props;
