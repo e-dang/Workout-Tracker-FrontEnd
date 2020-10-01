@@ -7,7 +7,7 @@ function _CustomTextInput(props) {
 
     return (
         <View>
-            <TextInput style={style} mode="outlined" {...props} />
+            <TextInput style={style} returnKeyType="done" mode="outlined" {...props} />
             <HelperText type="error" visible={errVisible}>
                 {errMessage}
             </HelperText>
