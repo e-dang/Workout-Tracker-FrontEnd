@@ -5,7 +5,7 @@ import {WorkoutTemplateCreateContainer} from '@workout-templates/containers/work
 import {MovementSelectContainer} from '@movements/containers';
 import {ExerciseTemplateCreateContainer} from '@exercise-templates/containers';
 import {WorkoutTemplateDetailContainer} from '@workout-templates/containers/workout-template-detail.container';
-import {WorkoutPerformContainer} from '@workouts/containers';
+import {WorkoutPerformContainer, WorkoutSummaryContainer} from '@workouts/containers';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +18,7 @@ export function WorkoutTemplateNavigator() {
             <Stack.Screen name="CreateExerciseTemplate" component={ExerciseTemplateCreateContainer} />
             <Stack.Screen name="WorkoutTemplateDetail" component={WorkoutTemplateDetailContainer} />
             <Stack.Screen name="PerformWorkout" component={WorkoutPerformContainer} />
+            <Stack.Screen name="WorkoutSummary" component={WorkoutSummaryContainer} />
         </Stack.Navigator>
     );
 }
