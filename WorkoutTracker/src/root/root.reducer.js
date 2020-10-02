@@ -8,6 +8,7 @@ import {musclesReducer} from '@muscles';
 import {paginationReducer} from '@pagination';
 import {entityReducer} from '@entities';
 import {workoutTemplateReducer} from '@workout-templates';
+import {workoutReducer} from '@workouts';
 
 const rootPersistConfig = {
     key: 'root',
@@ -23,6 +24,7 @@ const _rootReducer = combineReducers({
     equipment: equipmentReducer,
     movements: movementReducer,
     workoutTemplates: workoutTemplateReducer,
+    workouts: workoutReducer,
 });
 
 export default persistReducer(rootPersistConfig, _rootReducer);
