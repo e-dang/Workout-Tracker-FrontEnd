@@ -16,3 +16,4 @@ export * from '@components/single-select-list.component';
 export * from '@components/numeric-field-input.component';
 export * from '@components/weight-field-input.component';
 export * from '@components/set-adder.component';
+export * from '@components/timer.component';
