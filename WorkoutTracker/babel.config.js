@@ -20,6 +20,7 @@ module.exports = function (api) {
                         '@utils': './src/utils',
                         '@workout-templates': './src/workout-templates',
                         '@exercise-templates': './src/exercise-templates',
+                        '@workouts': './src/workouts',
                     },
                 },
             ],
