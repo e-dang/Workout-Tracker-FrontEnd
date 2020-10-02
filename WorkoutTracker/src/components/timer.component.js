@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {Surface, Text} from 'react-native-paper';
+import {Surface, Text, withTheme} from 'react-native-paper';
 
 const prependZero = (strNum) => {
     if (strNum < 10) {
@@ -23,7 +23,7 @@ const toHHMMSS = (seconds) => {
     return hours + ':' + minutes + ':' + seconds;
 };
 
-export function Timer(props) {
+function _Timer(props) {
     const {time, setTime} = props;
 
     React.useEffect(() => {
@@ -55,3 +55,5 @@ const styles = StyleSheet.create({
         fontSize: 40,
     },
 });
+
+export const Timer = withTheme(_Timer);
