@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {Appbar, Divider} from 'react-native-paper';
-import {ContainerView, Timer} from '@components';
-import {FlatList} from 'react-native';
+import {Appbar, FAB} from 'react-native-paper';
+import {ContainerView, Timer, CustomList} from '@components';
+import {getExerciseString} from '@utils';
 
 export function WorkoutPerformScreen(props) {
     const {navigation, workout} = props;
@@ -13,13 +13,14 @@ export function WorkoutPerformScreen(props) {
             <Appbar.Header>
                 <Appbar.Content title="Perform Workout" />
             </Appbar.Header>
-            <FlatList
-                data={workout.exercise || []}
-                ItemSeparatorComponent={Divider}
+            <CustomList
+                data={workout.exercises || []}
                 keyExtractor={(item) => `${item.order}`}
-                renderItem={({item}) => <List.Item title={getExerciseString(item)} />}
+                itemTitle={(item) => getExerciseString(item)}
+                title={'Exercises'}
             />
             <Timer time={time} setTime={setTime} />
+            <FAB label="Finish" onPress={() => navigation.navigate('WorkoutSummary')} />
         </ContainerView>
     );
 }
