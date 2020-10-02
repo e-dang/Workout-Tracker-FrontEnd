@@ -1,7 +1,7 @@
 import {CREATE_WORKOUT} from '@workouts/workouts.type';
 
 const initialState = {
-    workout: undefined,
+    workout: {},
     isPendingCreateWorkout: false,
     error: null,
 };
@@ -12,7 +12,7 @@ export const workoutReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isPendingCreateWorkout: true,
-                workout: undefined,
+                workout: {},
                 error: null,
             };
         case CREATE_WORKOUT.PENDING:
