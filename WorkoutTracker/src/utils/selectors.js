@@ -70,6 +70,16 @@ export const getUncommittedWorkoutTemplate = () => {
     return getWorkoutTemplateState().uncommittedWorkoutTemplate;
 };
 
+export const getWorkoutState = (getState = undefined) => {
+    if (getState) return getState().workouts;
+
+    return useSelector((state) => state.workouts);
+};
+
+export const getWorkout = () => {
+    return getWorkoutState().workout;
+};
+
 export const getPaginationState = (action, getState = undefined) => {
     if (getState) return getState().pagination[action];
 
