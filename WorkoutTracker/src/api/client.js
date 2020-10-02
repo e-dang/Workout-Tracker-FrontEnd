@@ -12,7 +12,7 @@ const authHeader = (authToken) => ({
     Authorization: `token ${authToken}`,
 });
 
-const constructHeader = (authToken, accept = ACCEPT.JSON) => ({
+export const constructHeader = (authToken, accept = ACCEPT.JSON) => ({
     headers: {
         Accept: accept,
         ...authHeader(authToken),
