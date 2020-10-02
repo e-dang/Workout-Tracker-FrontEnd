@@ -15,13 +15,13 @@ export const workoutReducer = (state = initialState, action) => {
                 workout: {},
                 error: null,
             };
-        case CREATE_WORKOUT.PENDING:
+        case CREATE_WORKOUT.SUCCESS:
             return {
                 ...state,
                 isPendingCreateWorkout: false,
                 workout: action.payload,
             };
-        case CREATE_WORKOUT.PENDING:
+        case CREATE_WORKOUT.ERROR:
             return {
                 ...state,
                 isPendingCreateWorkout: false,
