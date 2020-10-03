@@ -21,3 +21,4 @@ export * from '@components/custom-list-item.component';
 export * from '@components/custom-list.component';
 export * from '@components/workload-viewer.component';
 export * from '@components/exercise-viewer.component';
+export * from '@components/reps-weight-setter.component';
