@@ -1,8 +1,9 @@
-import {CREATE_WORKOUT} from '@workouts/workouts.type';
+import {CREATE_WORKOUT, UPDATE_WORKOUT} from '@workouts/workouts.type';
 
 const initialState = {
     workout: {},
     isPendingCreateWorkout: false,
+    isPendingUpdateWorkout: false,
     error: null,
 };
 
@@ -25,6 +26,24 @@ export const workoutReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isPendingCreateWorkout: false,
+                error: action.payload,
+            };
+        case UPDATE_WORKOUT.PENDING:
+            return {
+                ...state,
+                isPendingUpdateWorkout: true,
+                error: null,
+            };
+        case UPDATE_WORKOUT.SUCCESS:
+            return {
+                ...state,
+                isPendingUpdateWorkout: false,
+                workout: action.payload,
+            };
+        case UPDATE_WORKOUT.ERROR:
+            return {
+                ...state,
+                isPendingUpdateWorkout: false,
                 error: action.payload,
             };
         default:
