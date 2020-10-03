@@ -18,6 +18,7 @@ export function WorkoutPerformScreen(props) {
                 keyExtractor={(item) => `${item.order}`}
                 itemTitle={(item) => getExerciseString(item)}
                 title={'Exercises'}
+                onItemPress={(item) => navigation.push('PerformExercise', {exercise: item})}
             />
             <Timer time={time} setTime={setTime} />
             <FAB label="Finish" onPress={() => navigation.navigate('WorkoutSummary')} />
