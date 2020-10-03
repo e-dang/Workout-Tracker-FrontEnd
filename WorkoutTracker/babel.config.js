@@ -21,6 +21,7 @@ module.exports = function (api) {
                         '@workout-templates': './src/workout-templates',
                         '@exercise-templates': './src/exercise-templates',
                         '@workouts': './src/workouts',
+                        '@exercises': './src/exercises',
                     },
                 },
             ],
